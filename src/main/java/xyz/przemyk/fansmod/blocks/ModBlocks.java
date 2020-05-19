@@ -24,5 +24,5 @@ public class ModBlocks {
     public static final FanBlock EMERALD_FAN_BLOCK = null;
 
     @ObjectHolder(FansMod.MODID + ":redstone_fan")
-    public static final FanBlock REDSTONE_FAN_BLOCK = null;
+    public static final RedstoneFanBlock REDSTONE_FAN_BLOCK = null;
 }
