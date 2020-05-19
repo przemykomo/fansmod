@@ -1,10 +1,17 @@
 {
     "variants": {
-      "facing=north": { "model": "fansmod:block/redstone_fan", "uvlock": "true" },
-      "facing=south": { "model": "fansmod:block/redstone_fan", "uvlock": "true", "y": 180 },
-      "facing=west":  { "model": "fansmod:block/redstone_fan", "uvlock": "true", "y": -90 },
-      "facing=east":  { "model": "fansmod:block/redstone_fan", "uvlock": "true", "y": 90 },
-      "facing=up":    { "model": "fansmod:block/redstone_fan", "uvlock": "true", "x": -90 },
-      "facing=down":  { "model": "fansmod:block/redstone_fan", "uvlock": "true", "x": 90 }
+        "facing=north,powered=false": { "model": "fansmod:block/redstone_fan", "uvlock": "true" },
+        "facing=south,powered=false": { "model": "fansmod:block/redstone_fan", "uvlock": "true", "y": 180 },
+        "facing=west,powered=false":  { "model": "fansmod:block/redstone_fan", "uvlock": "true", "y": -90 },
+        "facing=east,powered=false":  { "model": "fansmod:block/redstone_fan", "uvlock": "true", "y": 90 },
+        "facing=up,powered=false":    { "model": "fansmod:block/redstone_fan", "uvlock": "true", "x": -90 },
+        "facing=down,powered=false":  { "model": "fansmod:block/redstone_fan", "uvlock": "true", "x": 90 },
+
+        "facing=north,powered=true": { "model": "fansmod:block/redstone_fan_powered", "uvlock": "true" },
+        "facing=south,powered=true": { "model": "fansmod:block/redstone_fan_powered", "uvlock": "true", "y": 180 },
+        "facing=west,powered=true":  { "model": "fansmod:block/redstone_fan_powered", "uvlock": "true", "y": -90 },
+        "facing=east,powered=true":  { "model": "fansmod:block/redstone_fan_powered", "uvlock": "true", "y": 90 },
+        "facing=up,powered=true":    { "model": "fansmod:block/redstone_fan_powered", "uvlock": "true", "x": -90 },
+        "facing=down,powered=true":  { "model": "fansmod:block/redstone_fan_powered", "uvlock": "true", "x": 90 }
     }
 }
