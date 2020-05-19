@@ -9,17 +9,30 @@ import net.minecraft.util.math.AxisAlignedBB;
 public class FanTile extends TileEntity implements ITickableTileEntity {
 
     public FanTile() {
-        super(ModBlocks.FAN_TILE);
+        this(0, 0);
     }
 
-    private final double FAN_SPEED = 0.1;
+    public FanTile(double fan_speed, double boxLength) {
+        super(ModBlocks.FAN_TILE);
 
-    private final AxisAlignedBB eastBox = new AxisAlignedBB(0, 0, 0, 5, 1, 1);
-    private final AxisAlignedBB westBox = new AxisAlignedBB(0, 0, 0, -5, 1, 1);
-    private final AxisAlignedBB southBox = new AxisAlignedBB(0, 0, 0, 1, 1, 5);
-    private final AxisAlignedBB northBox = new AxisAlignedBB(0, 0, 0, 1, 1, -5);
-    private final AxisAlignedBB upBox = new AxisAlignedBB(0, 0, 0, 1, 5, 1);
-    private final AxisAlignedBB downBox = new AxisAlignedBB(0, 0, 0, 1, -5, 1);
+        FAN_SPEED = fan_speed;
+
+        eastBox = new AxisAlignedBB(0, 0, 0, boxLength, 1, 1);
+        westBox = new AxisAlignedBB(0, 0, 0, -boxLength, 1, 1);
+        southBox = new AxisAlignedBB(0, 0, 0, 1, 1, boxLength);
+        northBox = new AxisAlignedBB(0, 0, 0, 1, 1, -boxLength);
+        upBox = new AxisAlignedBB(0, 0, 0, 1, boxLength, 1);
+        downBox = new AxisAlignedBB(0, 0, 0, 1, -boxLength, 1);
+    }
+
+    private final double FAN_SPEED;
+
+    private final AxisAlignedBB eastBox;
+    private final AxisAlignedBB westBox;
+    private final AxisAlignedBB southBox;
+    private final AxisAlignedBB northBox;
+    private final AxisAlignedBB upBox;
+    private final AxisAlignedBB downBox;
 
     @Override
     public void tick() {

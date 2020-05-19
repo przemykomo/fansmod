@@ -3,7 +3,6 @@ package xyz.przemyk.fansmod;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -37,19 +36,22 @@ public class FansMod {
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlockRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            blockRegistryEvent.getRegistry().register(new FanBlock());
+            blockRegistryEvent.getRegistry().register(new FanBlock(0.1, 5).setRegistryName("iron_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock(0.2, 7).setRegistryName("gold_fan"));
         }
 
         @SubscribeEvent
         public static void onItemRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
-            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.FAN_BLOCK, new Item.Properties()).setRegistryName("fan"));
+            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.IRON_FAN_BLOCK, new Item.Properties()).setRegistryName("iron_fan"));
+            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.GOLD_FAN_BLOCK, new Item.Properties()).setRegistryName("gold_fan"));
         }
 
         @SuppressWarnings("ConstantConditions")
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> tileRegistryEvent) {
-            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(FanTile::new, ModBlocks.FAN_BLOCK)
-                    .build(null).setRegistryName("fan"));
+            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(FanTile::new,
+                    ModBlocks.IRON_FAN_BLOCK, ModBlocks.GOLD_FAN_BLOCK
+                    ).build(null).setRegistryName("fan_tile"));
         }
     }
 }

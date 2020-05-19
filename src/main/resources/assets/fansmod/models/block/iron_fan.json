@@ -1,7 +1,7 @@
 {
   "parent": "fansmod:block/orientable_fan",
   "textures": {
-    "front": "fansmod:block/fan",
+    "front": "fansmod:block/iron_fan",
     "side": "block/iron_block"
   }
 }

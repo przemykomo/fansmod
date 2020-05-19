@@ -1,0 +1,7 @@
+{
+  "parent": "fansmod:block/orientable_fan",
+  "textures": {
+    "front": "fansmod:block/gold_fan",
+    "side": "block/gold_block"
+  }
+}
