@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
@@ -18,6 +19,8 @@ import javax.annotation.Nullable;
 
 public class FanBlock extends Block {
 
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
+
     public FanBlock(double fan_speed, double boxLength) {
         super(Properties.create(Material.PISTON)
                 .sound(SoundType.WOOD)
@@ -28,13 +31,13 @@ public class FanBlock extends Block {
         BOX_LENGTH = boxLength;
     }
 
-    private final double FAN_SPEED;
-    private final double BOX_LENGTH;
+    protected final double FAN_SPEED;
+    protected final double BOX_LENGTH;
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         if (placer != null) {
-            worldIn.setBlockState(pos, state.with(BlockStateProperties.FACING, getFacingFromEntity(pos, placer)), 2);
+            worldIn.setBlockState(pos, state.with(FACING, getFacingFromEntity(pos, placer)), 2);
         }
     }
 
@@ -45,7 +48,7 @@ public class FanBlock extends Block {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.FACING);
+        builder.add(FACING);
     }
 
     @Override
