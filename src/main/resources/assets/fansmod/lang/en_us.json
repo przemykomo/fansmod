@@ -1,0 +1,11 @@
+{
+    "block.fansmod.iron_fan": "Iron Fan",
+    "block.fansmod.gold_fan": "Gold Fan",
+    "block.fansmod.diamond_fan": "Diamond Fan",
+    "block.fansmod.emerald_fan": "Emerald Fan",
+    "block.fansmod.redstone_fan": "Redstone Fan",
+
+    "item.fansmod.propeller": "Propeller",
+
+    "itemGroup.fansmod": "Fans Mod"
+}
