@@ -1,0 +1,10 @@
+{
+    "variants": {
+      "facing=north": { "model": "fansmod:block/emerald_fan", "uvlock": "true" },
+      "facing=south": { "model": "fansmod:block/emerald_fan", "uvlock": "true", "y": 180 },
+      "facing=west":  { "model": "fansmod:block/emerald_fan", "uvlock": "true", "y": -90 },
+      "facing=east":  { "model": "fansmod:block/emerald_fan", "uvlock": "true", "y": 90 },
+      "facing=up":    { "model": "fansmod:block/emerald_fan", "uvlock": "true", "x": -90 },
+      "facing=down":  { "model": "fansmod:block/emerald_fan", "uvlock": "true", "x": 90 }
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "fansmod:block/orientable_fan",
+  "textures": {
+    "front": "fansmod:block/redstone_fan",
+    "side": "block/redstone_block"
+  }
+}

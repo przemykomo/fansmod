@@ -36,21 +36,29 @@ public class FansMod {
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlockRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            blockRegistryEvent.getRegistry().register(new FanBlock(0.1, 5).setRegistryName("iron_fan"));
-            blockRegistryEvent.getRegistry().register(new FanBlock(0.2, 7).setRegistryName("gold_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock(0.05, 5).setRegistryName("iron_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock(0.1, 5).setRegistryName("gold_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock(0.15, 7).setRegistryName("diamond_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock(0.2, 7).setRegistryName("emerald_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock(0.13, 6).setRegistryName("redstone_fan"));
         }
 
         @SubscribeEvent
         public static void onItemRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
             itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.IRON_FAN_BLOCK, new Item.Properties()).setRegistryName("iron_fan"));
             itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.GOLD_FAN_BLOCK, new Item.Properties()).setRegistryName("gold_fan"));
+            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.DIAMOND_FAN_BLOCK, new Item.Properties()).setRegistryName("diamond_fan"));
+            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.EMERALD_FAN_BLOCK, new Item.Properties()).setRegistryName("emerald_fan"));
+            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.REDSTONE_FAN_BLOCK, new Item.Properties()).setRegistryName("redstone_fan"));
         }
 
         @SuppressWarnings("ConstantConditions")
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> tileRegistryEvent) {
             tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(FanTile::new,
-                    ModBlocks.IRON_FAN_BLOCK, ModBlocks.GOLD_FAN_BLOCK
+                    ModBlocks.IRON_FAN_BLOCK, ModBlocks.GOLD_FAN_BLOCK,
+                    ModBlocks.DIAMOND_FAN_BLOCK, ModBlocks.EMERALD_FAN_BLOCK,
+                    ModBlocks.REDSTONE_FAN_BLOCK
                     ).build(null).setRegistryName("fan_tile"));
         }
     }

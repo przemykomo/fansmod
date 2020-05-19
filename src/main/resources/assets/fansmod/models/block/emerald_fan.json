@@ -1,0 +1,7 @@
+{
+  "parent": "fansmod:block/orientable_fan",
+  "textures": {
+    "front": "fansmod:block/emerald_fan",
+    "side": "block/emerald_block"
+  }
+}
