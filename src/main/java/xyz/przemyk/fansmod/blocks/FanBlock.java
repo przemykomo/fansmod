@@ -12,6 +12,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -36,8 +37,9 @@ public class FanBlock extends Block {
     }
 
     public static Direction getFacingFromEntity(BlockPos blockPos, LivingEntity entity) {
-        return Direction.getFacingFromVector(entity.getPosX() - blockPos.getX(),
-                entity.getPosY() - blockPos.getY(), entity.getPosZ() - blockPos.getZ());
+        Vec3d entityPos = entity.getPositionVec();
+        return Direction.getFacingFromVector(entityPos.x - blockPos.getX(),
+                entityPos.y - blockPos.getY(), entityPos.z - blockPos.getZ());
     }
 
     @Override
