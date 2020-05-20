@@ -35,10 +35,10 @@ public class FansMod {
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlockRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            blockRegistryEvent.getRegistry().register(new FanBlock(0.05, 5).setRegistryName("iron_fan"));
-            blockRegistryEvent.getRegistry().register(new FanBlock(0.1, 5).setRegistryName("gold_fan"));
-            blockRegistryEvent.getRegistry().register(new FanBlock(0.15, 7).setRegistryName("diamond_fan"));
-            blockRegistryEvent.getRegistry().register(new FanBlock(0.2, 7).setRegistryName("emerald_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("iron_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("gold_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("diamond_fan"));
+            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("emerald_fan"));
             blockRegistryEvent.getRegistry().register(new RedstoneFanBlock(0.13, 6).setRegistryName("redstone_fan"));
         }
 
