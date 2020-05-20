@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "rrr",
+        "rfr",
+        "rrr"
+    ],
+    "key":
+    {
+        "r":
+        {
+            "tag": "forge:dusts/redstone"
+        },
+        "f":
+        {
+            "item": "fansmod:gold_fan"
+        }
+    },
+    "result":
+    {
+        "item": "fansmod:redstone_fan",
+        "count": 1
+    }
+}

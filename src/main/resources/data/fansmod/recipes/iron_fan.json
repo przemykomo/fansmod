@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "iwi",
+        "pci",
+        "iii"
+    ],
+    "key":
+    {
+        "i":
+        {
+            "tag": "forge:ingots/iron"
+        },
+        "p":
+        {
+            "item": "fansmod:propeller"
+        },
+        "w":
+        {
+            "tag": "minecraft:planks"
+        },
+        "c":
+        {
+            "tag": "forge:cobblestone"
+        }
+    },
+    "result":
+    {
+        "item": "fansmod:iron_fan",
+        "count": 1
+    }
+}

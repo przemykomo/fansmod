@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        " i ",
+        "isi",
+        " i "
+    ],
+    "key":
+    {
+        "i":
+        {
+            "tag": "forge:ingots/iron"
+        },
+        "s":
+        {
+            "tag": "forge:rods/wooden"
+        }
+    },
+    "result":
+    {
+        "item": "fansmod:propeller",
+        "count": 1
+    }
+}

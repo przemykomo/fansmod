@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "iwi",
+        "pci",
+        "iii"
+    ],
+    "key":
+    {
+        "i":
+        {
+            "tag": "forge:gems/emerald"
+        },
+        "p":
+        {
+            "item": "fansmod:propeller"
+        },
+        "w":
+        {
+            "tag": "minecraft:planks"
+        },
+        "c":
+        {
+            "tag": "forge:cobblestone"
+        }
+    },
+    "result":
+    {
+        "item": "fansmod:emerald_fan",
+        "count": 1
+    }
+}
