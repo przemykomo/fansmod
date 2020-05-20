@@ -39,7 +39,7 @@ public class FansMod {
             blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("gold_fan"));
             blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("diamond_fan"));
             blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("emerald_fan"));
-            blockRegistryEvent.getRegistry().register(new RedstoneFanBlock(0.13, 6).setRegistryName("redstone_fan"));
+            blockRegistryEvent.getRegistry().register(new RedstoneFanBlock().setRegistryName("redstone_fan"));
         }
 
         @SubscribeEvent

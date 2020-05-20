@@ -2,8 +2,8 @@ package xyz.przemyk.fansmod.blocks;
 
 public class RedstoneFanTile extends FanTile  {
 
-    public RedstoneFanTile(double fan_speed, double boxLength) {
-        super(fan_speed, boxLength);
+    public RedstoneFanTile() {
+        super();
     }
 
     @Override

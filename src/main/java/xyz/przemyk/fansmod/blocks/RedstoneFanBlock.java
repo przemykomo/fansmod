@@ -19,14 +19,13 @@ public class RedstoneFanBlock extends FanBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public RedstoneFanBlock(double fan_speed, double boxLength) {
-        super(fan_speed, boxLength);
+    public RedstoneFanBlock() {
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new RedstoneFanTile(FAN_SPEED, BOX_LENGTH);
+        return new RedstoneFanTile();
     }
 
     @Override
