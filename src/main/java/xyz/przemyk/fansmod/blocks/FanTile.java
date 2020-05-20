@@ -1,6 +1,7 @@
 package xyz.przemyk.fansmod.blocks;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -62,7 +63,9 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
             List<Entity> entityList = world.getEntitiesWithinAABB(Entity.class, scan);
 
             for (Entity entity : entityList) {
-                addMotion(entity);
+                if (!( entity instanceof PlayerEntity && ((PlayerEntity) entity).abilities.isFlying)) {
+                    addMotion(entity);
+                }
                 if (fanDirection == Direction.UP) {
                     entity.fallDistance = 0;
                 }
