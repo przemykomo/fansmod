@@ -21,18 +21,12 @@ public class FanBlock extends Block {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
-    public FanBlock(double fan_speed, double boxLength) {
+    public FanBlock() {
         super(Properties.create(Material.PISTON)
                 .sound(SoundType.WOOD)
                 .hardnessAndResistance(2.0f)
         );
-
-        FAN_SPEED = fan_speed;
-        BOX_LENGTH = boxLength;
     }
-
-    protected final double FAN_SPEED;
-    protected final double BOX_LENGTH;
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
@@ -59,6 +53,6 @@ public class FanBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new FanTile(FAN_SPEED, BOX_LENGTH);
+        return new FanTile();
     }
 }
