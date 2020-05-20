@@ -22,6 +22,8 @@ public class RedstoneFanBlock extends FanBlock {
     public RedstoneFanBlock() {
     }
 
+
+
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
