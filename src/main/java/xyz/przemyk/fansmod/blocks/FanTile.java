@@ -35,7 +35,7 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
 
                 switch (getBlockState().getBlock().getRegistryName().toString()) {
                     case FansMod.MODID + ":iron_fan":
-                        fanSpeed = 0.08;
+                        fanSpeed = 0.06;
                         boxLength = 8;
                         break;
                     case FansMod.MODID + ":gold_fan":
