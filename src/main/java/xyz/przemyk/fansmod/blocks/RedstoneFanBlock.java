@@ -10,7 +10,6 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -18,11 +17,6 @@ import javax.annotation.Nullable;
 public class RedstoneFanBlock extends FanBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-
-    public RedstoneFanBlock() {
-    }
-
-
 
     @Nullable
     @Override
@@ -32,15 +26,15 @@ public class RedstoneFanBlock extends FanBlock {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        worldIn.setBlockState(pos, state.with(FACING, getFacingFromEntity(pos, placer)).with(BlockStateProperties.POWERED, worldIn.isBlockPowered(pos)), 2);
+        worldIn.setBlockState(pos, state.with(FACING, getFacingFromEntity(pos, placer)).with(POWERED, worldIn.isBlockPowered(pos)), 2);
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (!worldIn.isRemote) {
-            if (state.get(BlockStateProperties.POWERED) != worldIn.isBlockPowered(pos)) {
-                worldIn.setBlockState(pos, state.with(BlockStateProperties.POWERED, worldIn.isBlockPowered(pos)), 2);
+            if (state.get(POWERED) != worldIn.isBlockPowered(pos)) {
+                worldIn.setBlockState(pos, state.with(POWERED, worldIn.isBlockPowered(pos)), 2);
             }
         }
     }

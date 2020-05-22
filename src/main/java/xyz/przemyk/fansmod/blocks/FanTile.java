@@ -17,13 +17,13 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
         super(ModBlocks.FAN_TILE);
     }
 
-    private boolean firstTick = true;
+    protected boolean firstTick = true;
 
-    private double fanSpeed;
-    private double boxLength;
+    protected double fanSpeed;
+    protected int boxLength;
 
-    private Direction fanDirection;
-    private AxisAlignedBB scan;
+    protected Direction fanDirection;
+    protected AxisAlignedBB scan;
 
     @Override
     public void tick() {
@@ -50,30 +50,30 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
                         fanSpeed = 0.2;
                         boxLength = 16;
                         break;
-                    case FansMod.MODID + ":redstone_fan":
-                        fanSpeed = 0.13;
-                        boxLength = 10;
-                        break;
                 }
 
                 fanDirection = getBlockState().get(BlockStateProperties.FACING);
-                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, (int) boxLength).add(1.0, 1.0, 1.0));
+                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
             }
 
-            List<Entity> entityList = world.getEntitiesWithinAABB(Entity.class, scan);
+            moveEntities();
+        }
+    }
 
-            for (Entity entity : entityList) {
-                if (!( entity instanceof PlayerEntity && ((PlayerEntity) entity).abilities.isFlying)) {
-                    addMotion(entity);
-                }
-                if (fanDirection == Direction.UP) {
-                    entity.fallDistance = 0;
-                }
+    protected void moveEntities() {
+        List<Entity> entityList = world.getEntitiesWithinAABB(Entity.class, scan);
+
+        for (Entity entity : entityList) {
+            if (!( entity instanceof PlayerEntity && ((PlayerEntity) entity).abilities.isFlying)) {
+                addMotion(entity);
+            }
+            if (fanDirection == Direction.UP) {
+                entity.fallDistance = 0;
             }
         }
     }
 
-    private void addMotion(Entity entity) {
+    protected void addMotion(Entity entity) {
         switch (fanDirection) {
             case DOWN:
                 entity.setMotion(entity.getMotion().x, entity.getMotion().y - fanSpeed, entity.getMotion().z);
