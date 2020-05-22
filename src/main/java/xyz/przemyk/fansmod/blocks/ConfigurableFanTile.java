@@ -21,6 +21,7 @@ public class ConfigurableFanTile extends FanTile {
                 firstTick = false;
 
                 fanDirection = getBlockState().get(BlockStateProperties.FACING);
+                boxLength = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
                 scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
             }
 

@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "rqr",
+        "qfq",
+        "rqr"
+    ],
+    "key":
+    {
+        "r":
+        {
+            "tag": "forge:dusts/redstone"
+        },
+        "f":
+        {
+            "item": "fansmod:diamond_fan"
+        },
+        "q": {
+            "tag": "forge:gems/quartz"
+        }
+    },
+    "result":
+    {
+        "item": "fansmod:configurable_fan",
+        "count": 1
+    }
+}
