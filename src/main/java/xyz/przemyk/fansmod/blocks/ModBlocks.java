@@ -25,4 +25,7 @@ public class ModBlocks {
 
     @ObjectHolder(FansMod.MODID + ":redstone_fan")
     public static final RedstoneFanBlock REDSTONE_FAN_BLOCK = null;
+
+    @ObjectHolder(FansMod.MODID + ":configurable_fan")
+    public static final ConfigurableFanBlock CONFIGURABLE_FAN_BLOCK = null;
 }

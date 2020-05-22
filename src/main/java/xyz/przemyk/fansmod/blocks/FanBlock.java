@@ -31,12 +31,13 @@ public class FanBlock extends Block {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (placer != null) {
-            worldIn.setBlockState(pos, state.with(FACING, getFacingFromEntity(pos, placer)), 2);
-        }
+        worldIn.setBlockState(pos, state.with(FACING, getFacingFromEntity(pos, placer)), 2);
     }
 
     public static Direction getFacingFromEntity(BlockPos blockPos, LivingEntity entity) {
+        if (entity == null) {
+            return Direction.NORTH;
+        }
         Vec3d entityPos = entity.getPositionVec();
         return Direction.getFacingFromVector(entityPos.x - blockPos.getX(),
                 entityPos.y - blockPos.getY(), entityPos.z - blockPos.getZ());
