@@ -1,0 +1,8 @@
+{
+  "parent": "fansmod:block/texture_fan",
+  "textures": {
+    "front": "fansmod:block/configurable_fan",
+    "side": "fansmod:block/configurable_fan_side",
+    "back": "fansmod:block/configurable_fan_bottom"
+  }
+}

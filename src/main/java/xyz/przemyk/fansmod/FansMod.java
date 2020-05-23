@@ -9,10 +9,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import xyz.przemyk.fansmod.blocks.FanBlock;
-import xyz.przemyk.fansmod.blocks.FanTile;
-import xyz.przemyk.fansmod.blocks.ModBlocks;
-import xyz.przemyk.fansmod.blocks.RedstoneFanBlock;
+import xyz.przemyk.fansmod.blocks.*;
 
 @Mod(FansMod.MODID)
 public class FansMod {
@@ -32,22 +29,24 @@ public class FansMod {
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlockRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("iron_fan"));
-            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("gold_fan"));
-            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("diamond_fan"));
-            blockRegistryEvent.getRegistry().register(new FanBlock().setRegistryName("emerald_fan"));
-            blockRegistryEvent.getRegistry().register(new RedstoneFanBlock().setRegistryName("redstone_fan"));
+            blockRegistryEvent.getRegistry().registerAll(new FanBlock().setRegistryName("iron_fan"),
+                    new FanBlock().setRegistryName("gold_fan"),
+                    new FanBlock().setRegistryName("diamond_fan"),
+                    new FanBlock().setRegistryName("emerald_fan"),
+                    new RedstoneFanBlock().setRegistryName("redstone_fan"),
+                    new ConfigurableFanBlock().setRegistryName("configurable_fan"));
         }
 
         @SubscribeEvent
         public static void onItemRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
-            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.IRON_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("iron_fan"));
-            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.GOLD_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("gold_fan"));
-            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.DIAMOND_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("diamond_fan"));
-            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.EMERALD_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("emerald_fan"));
-            itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.REDSTONE_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("redstone_fan"));
+            itemRegistryEvent.getRegistry().registerAll(new BlockItem(ModBlocks.IRON_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("iron_fan"),
+            new BlockItem(ModBlocks.GOLD_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("gold_fan"),
+            new BlockItem(ModBlocks.DIAMOND_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("diamond_fan"),
+            new BlockItem(ModBlocks.EMERALD_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("emerald_fan"),
+            new BlockItem(ModBlocks.REDSTONE_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("redstone_fan"),
+            new BlockItem(ModBlocks.CONFIGURABLE_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("configurable_fan"),
 
-            itemRegistryEvent.getRegistry().register(new Item(new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("propeller"));
+            new Item(new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("propeller"));
         }
 
         @SuppressWarnings("ConstantConditions")
@@ -57,7 +56,10 @@ public class FansMod {
                     ModBlocks.IRON_FAN_BLOCK, ModBlocks.GOLD_FAN_BLOCK,
                     ModBlocks.DIAMOND_FAN_BLOCK, ModBlocks.EMERALD_FAN_BLOCK,
                     ModBlocks.REDSTONE_FAN_BLOCK
-                    ).build(null).setRegistryName("fan_tile"));
+            ).build(null).setRegistryName("fan_tile"));
+            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(ConfigurableFanTile::new,
+                    ModBlocks.CONFIGURABLE_FAN_BLOCK
+            ).build(null).setRegistryName("configurable_fan_tile"));
         }
     }
 }
