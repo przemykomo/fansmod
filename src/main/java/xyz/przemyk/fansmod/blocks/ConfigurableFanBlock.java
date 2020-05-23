@@ -15,12 +15,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import xyz.przemyk.fansmod.Config;
 
 import javax.annotation.Nullable;
 
 public class ConfigurableFanBlock extends FanBlock {
 
-    public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_15;
+    /**
+     * See {@link xyz.przemyk.fansmod.FansMod#FansMod()}
+     */
+    public static IntegerProperty LEVEL;
 
     @Nullable
     @Override

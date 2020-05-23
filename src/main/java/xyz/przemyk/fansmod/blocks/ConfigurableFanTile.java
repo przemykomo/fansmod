@@ -3,13 +3,14 @@ package xyz.przemyk.fansmod.blocks;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
+import xyz.przemyk.fansmod.Config;
 
 public class ConfigurableFanTile extends FanTile {
 
     public ConfigurableFanTile() {
         super(ModBlocks.CONFIGURABLE_FAN_TILE);
 
-        fanSpeed = 0.15;
+        fanSpeed = Config.CONFIGURABLE_FAN_SPEED.get();
         boxLength = 0;
         fanDirection = Direction.NORTH;
     }
