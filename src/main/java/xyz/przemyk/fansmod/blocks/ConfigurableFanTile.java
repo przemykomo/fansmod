@@ -7,7 +7,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 public class ConfigurableFanTile extends FanTile {
 
     public ConfigurableFanTile() {
-        super();
+        super(ModBlocks.CONFIGURABLE_FAN_TILE);
 
         fanSpeed = 0.15;
         boxLength = 0;

@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import xyz.przemyk.fansmod.FansMod;
@@ -15,6 +16,10 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
 
     public FanTile() {
         super(ModBlocks.FAN_TILE);
+    }
+
+    protected FanTile(TileEntityType<?> tileEntityTypeIn) {
+        super(tileEntityTypeIn);
     }
 
     protected boolean firstTick = true;

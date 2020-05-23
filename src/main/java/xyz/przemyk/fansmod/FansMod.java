@@ -55,8 +55,11 @@ public class FansMod {
             tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(FanTile::new,
                     ModBlocks.IRON_FAN_BLOCK, ModBlocks.GOLD_FAN_BLOCK,
                     ModBlocks.DIAMOND_FAN_BLOCK, ModBlocks.EMERALD_FAN_BLOCK,
-                    ModBlocks.REDSTONE_FAN_BLOCK, ModBlocks.CONFIGURABLE_FAN_BLOCK
-                    ).build(null).setRegistryName("fan_tile"));
+                    ModBlocks.REDSTONE_FAN_BLOCK
+            ).build(null).setRegistryName("fan_tile"));
+            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(ConfigurableFanTile::new,
+                    ModBlocks.CONFIGURABLE_FAN_BLOCK
+            ).build(null).setRegistryName("configurable_fan_tile"));
         }
     }
 }
