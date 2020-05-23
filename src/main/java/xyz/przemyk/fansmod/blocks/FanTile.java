@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
+import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.FansMod;
 
 import java.util.List;
@@ -40,20 +41,20 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
 
                 switch (getBlockState().getBlock().getRegistryName().toString()) {
                     case FansMod.MODID + ":iron_fan":
-                        fanSpeed = 0.06;
-                        boxLength = 8;
+                        fanSpeed = Config.IRON_FAN_SPEED.get();
+                        boxLength = Config.IRON_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":gold_fan":
-                        fanSpeed = 0.1;
-                        boxLength = 10;
+                        fanSpeed = Config.GOLD_FAN_SPEED.get();
+                        boxLength = Config.GOLD_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":diamond_fan":
-                        fanSpeed = 0.15;
-                        boxLength = 12;
+                        fanSpeed = Config.DIAMOND_FAN_SPEED.get();
+                        boxLength = Config.DIAMOND_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":emerald_fan":
-                        fanSpeed = 0.2;
-                        boxLength = 16;
+                        fanSpeed = Config.EMERALD_FAN_SPEED.get();
+                        boxLength = Config.EMERALD_FAN_RANGE.get();
                         break;
                 }
 
