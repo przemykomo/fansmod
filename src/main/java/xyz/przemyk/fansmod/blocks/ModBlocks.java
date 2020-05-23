@@ -10,6 +10,9 @@ public class ModBlocks {
     @ObjectHolder(FansMod.MODID + ":fan_tile")
     public static final TileEntityType<FanTile> FAN_TILE = null;
 
+    @ObjectHolder(FansMod.MODID + ":configurable_fan_tile")
+    public static final TileEntityType<ConfigurableFanTile> CONFIGURABLE_FAN_TILE = null;
+
     //BLOCKS
     @ObjectHolder(FansMod.MODID + ":iron_fan")
     public static final FanBlock IRON_FAN_BLOCK = null;
