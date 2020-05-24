@@ -8,8 +8,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.FansMod;
 
@@ -60,15 +58,19 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
                         break;
                 }
 
-                getDirectionAndScan();
+                getDirection();
+                getScan();
             }
 
             moveEntities();
         }
     }
 
-    protected void getDirectionAndScan() {
+    protected void getDirection() {
         fanDirection = getBlockState().get(BlockStateProperties.FACING);
+    }
+
+    protected void getScan() {
         switch (fanDirection) {
             case DOWN:
             case NORTH:

@@ -3,9 +3,9 @@ package xyz.przemyk.fansmod.blocks;
 public class RedstoneFanTile extends FanTile  {
 
     public RedstoneFanTile() {
-        super();
+        super(ModBlocks.REDSTONE_FAN_TILE);
         fanSpeed = 0.13;
-        boxLength = 10;
+        boxLength = 0;
     }
 
     @Override
@@ -14,12 +14,15 @@ public class RedstoneFanTile extends FanTile  {
             if (firstTick) {
                 firstTick = false;
 
-                getDirectionAndScan();
+                getDirection();
             }
 
-            if (world.isBlockPowered(pos)) {
+            boxLength =  world.getRedstonePowerFromNeighbors(pos);
+            getScan();
+            if (boxLength > 0) {
                 moveEntities();
             }
         }
     }
+
 }

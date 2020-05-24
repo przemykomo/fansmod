@@ -21,7 +21,8 @@ public class ConfigurableFanTile extends FanTile {
                 firstTick = false;
 
                 boxLength = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
-                getDirectionAndScan();
+                getDirection();
+                getScan();
             }
 
             moveEntities();
@@ -31,6 +32,6 @@ public class ConfigurableFanTile extends FanTile {
     void update() {
         boxLength = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
 
-        scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
+        getScan();
     }
 }
