@@ -26,7 +26,7 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
     protected boolean firstTick = true;
 
     protected double fanSpeed;
-    protected int boxLength;
+    protected int range;
 
     protected Direction fanDirection;
     protected AxisAlignedBB scan;
@@ -42,24 +42,24 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
                 switch (getBlockState().getBlock().getRegistryName().toString()) {
                     case FansMod.MODID + ":iron_fan":
                         fanSpeed = Config.IRON_FAN_SPEED.get();
-                        boxLength = Config.IRON_FAN_RANGE.get();
+                        range = Config.IRON_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":gold_fan":
                         fanSpeed = Config.GOLD_FAN_SPEED.get();
-                        boxLength = Config.GOLD_FAN_RANGE.get();
+                        range = Config.GOLD_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":diamond_fan":
                         fanSpeed = Config.DIAMOND_FAN_SPEED.get();
-                        boxLength = Config.DIAMOND_FAN_RANGE.get();
+                        range = Config.DIAMOND_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":emerald_fan":
                         fanSpeed = Config.EMERALD_FAN_SPEED.get();
-                        boxLength = Config.EMERALD_FAN_RANGE.get();
+                        range = Config.EMERALD_FAN_RANGE.get();
                         break;
                 }
 
                 getDirection();
-                getScan();
+                scan = getScan(range);
             }
 
             moveEntities();
@@ -70,15 +70,14 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
         fanDirection = getBlockState().get(BlockStateProperties.FACING);
     }
 
-    protected void getScan() {
+    protected AxisAlignedBB getScan(int boxLength) {
         switch (fanDirection) {
             case DOWN:
             case NORTH:
             case WEST:
-                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength + 1).add(1.0, 1.0, 1.0));
-                break;
+                return new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength + 1).add(1.0, 1.0, 1.0));
             default:
-                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
+                return new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
         }
     }
 

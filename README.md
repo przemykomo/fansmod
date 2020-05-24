@@ -13,6 +13,9 @@ Redstone fan has range depending on redstone signal strength.
 ### Configurable fan
 Range of this fan can be configured by right clicking on it (0 blocks - 15 blocks).
 
+### Sticky fan
+Doesn't push entities while they are touching it.
+
 ### Recipes
 ![Propeller](./screenshots/crafting_propeller.png)
 ![Iron fan](./screenshots/crafting_iron.png)
@@ -21,3 +24,4 @@ Range of this fan can be configured by right clicking on it (0 blocks - 15 block
 ![Emerald fan](./screenshots/crafting_emerald.png)
 ![Redstone fan](./screenshots/crafting_redstone.png)
 ![Configurable fan](./screenshots/crafting_configurable.png)
+![Sticky fan](./screenshots/crafting_sticky.png)

@@ -1,0 +1,10 @@
+{
+    "variants": {
+      "facing=north": { "model": "fansmod:block/sticky_fan" },
+      "facing=south": { "model": "fansmod:block/sticky_fan", "y": 180 },
+      "facing=west":  { "model": "fansmod:block/sticky_fan", "y": -90 },
+      "facing=east":  { "model": "fansmod:block/sticky_fan", "y": 90 },
+      "facing=up":    { "model": "fansmod:block/sticky_fan", "x": -90 },
+      "facing=down":  { "model": "fansmod:block/sticky_fan", "x": 90 }
+    }
+}

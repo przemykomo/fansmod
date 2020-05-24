@@ -43,7 +43,8 @@ public class FansMod {
                     new FanBlock().setRegistryName("diamond_fan"),
                     new FanBlock().setRegistryName("emerald_fan"),
                     new RedstoneFanBlock().setRegistryName("redstone_fan"),
-                    new ConfigurableFanBlock().setRegistryName("configurable_fan"));
+                    new ConfigurableFanBlock().setRegistryName("configurable_fan"),
+                    new StickyFanBlock().setRegistryName("sticky_fan"));
         }
 
         @SubscribeEvent
@@ -54,6 +55,7 @@ public class FansMod {
             new BlockItem(ModBlocks.EMERALD_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("emerald_fan"),
             new BlockItem(ModBlocks.REDSTONE_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("redstone_fan"),
             new BlockItem(ModBlocks.CONFIGURABLE_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("configurable_fan"),
+            new BlockItem(ModBlocks.STICKY_FAN_BLOCK, new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("sticky_fan"),
 
             new Item(new Item.Properties().group(FANS_ITEM_GROUP)).setRegistryName("propeller"));
         }
@@ -61,16 +63,18 @@ public class FansMod {
         @SuppressWarnings("ConstantConditions")
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> tileRegistryEvent) {
-            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(FanTile::new,
-                    ModBlocks.IRON_FAN_BLOCK, ModBlocks.GOLD_FAN_BLOCK,
-                    ModBlocks.DIAMOND_FAN_BLOCK, ModBlocks.EMERALD_FAN_BLOCK
-            ).build(null).setRegistryName("fan_tile"));
-            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(ConfigurableFanTile::new,
-                    ModBlocks.CONFIGURABLE_FAN_BLOCK
-            ).build(null).setRegistryName("configurable_fan_tile"));
-            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(RedstoneFanTile::new,
-                    ModBlocks.REDSTONE_FAN_BLOCK
-            ).build(null).setRegistryName("redstone_fan_tile"));
+            tileRegistryEvent.getRegistry().registerAll(
+                    TileEntityType.Builder.create(FanTile::new,
+                            ModBlocks.IRON_FAN_BLOCK, ModBlocks.GOLD_FAN_BLOCK,
+                            ModBlocks.DIAMOND_FAN_BLOCK, ModBlocks.EMERALD_FAN_BLOCK)
+                            .build(null).setRegistryName("fan_tile"),
+                    TileEntityType.Builder.create(ConfigurableFanTile::new, ModBlocks.CONFIGURABLE_FAN_BLOCK)
+                            .build(null).setRegistryName("configurable_fan_tile"),
+                    TileEntityType.Builder.create(RedstoneFanTile::new, ModBlocks.REDSTONE_FAN_BLOCK)
+                            .build(null).setRegistryName("redstone_fan_tile"),
+                    TileEntityType.Builder.create(StickyFanTile::new, ModBlocks.STICKY_FAN_BLOCK)
+                            .build(null).setRegistryName("sticky_fan_tile")
+            );
         }
     }
 }

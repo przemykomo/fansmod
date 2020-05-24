@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "forge:slimeballs"
+        },
+        {
+            "item": "fansmod:gold_fan"
+        }
+    ],
+    "result": {
+        "item": "fansmod:sticky_fan"
+    }
+}

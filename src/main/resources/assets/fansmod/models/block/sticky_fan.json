@@ -1,0 +1,19 @@
+{
+  "parent": "block/cube_directional",
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [ 0, 135, 0 ],
+      "translation": [ 0, 0, 0 ],
+      "scale": [ 0.40, 0.40, 0.40 ]
+    }
+  },
+  "textures": {
+    "particle": "#north",
+    "down": "fansmod:block/sticky_fan_side",
+    "up": "fansmod:block/sticky_fan_side",
+    "north": "fansmod:block/sticky_fan",
+    "east": "fansmod:block/sticky_fan_side",
+    "south": "block/gold_block",
+    "west": "fansmod:block/sticky_fan_side"
+  }
+}
