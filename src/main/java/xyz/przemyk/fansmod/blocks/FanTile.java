@@ -8,6 +8,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.FansMod;
 
@@ -58,11 +60,23 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
                         break;
                 }
 
-                fanDirection = getBlockState().get(BlockStateProperties.FACING);
-                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
+                getDirectionAndScan();
             }
 
             moveEntities();
+        }
+    }
+
+    protected void getDirectionAndScan() {
+        fanDirection = getBlockState().get(BlockStateProperties.FACING);
+        switch (fanDirection) {
+            case DOWN:
+            case NORTH:
+            case WEST:
+                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength + 1).add(1.0, 1.0, 1.0));
+                break;
+            default:
+                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
         }
     }
 

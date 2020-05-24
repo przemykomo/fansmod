@@ -1,8 +1,5 @@
 package xyz.przemyk.fansmod.blocks;
 
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.AxisAlignedBB;
-
 public class RedstoneFanTile extends FanTile  {
 
     public RedstoneFanTile() {
@@ -17,8 +14,7 @@ public class RedstoneFanTile extends FanTile  {
             if (firstTick) {
                 firstTick = false;
 
-                fanDirection = getBlockState().get(BlockStateProperties.FACING);
-                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
+                getDirectionAndScan();
             }
 
             if (world.isBlockPowered(pos)) {
