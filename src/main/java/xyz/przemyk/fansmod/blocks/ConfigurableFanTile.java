@@ -1,6 +1,5 @@
 package xyz.przemyk.fansmod.blocks;
 
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import xyz.przemyk.fansmod.Config;
@@ -21,9 +20,8 @@ public class ConfigurableFanTile extends FanTile {
             if (firstTick) {
                 firstTick = false;
 
-                fanDirection = getBlockState().get(BlockStateProperties.FACING);
                 boxLength = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
-                scan = new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
+                getDirectionAndScan();
             }
 
             moveEntities();
