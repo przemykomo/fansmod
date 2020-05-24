@@ -8,7 +8,7 @@ Currently there are iron, gold, diamond and emerald fans (each faster than its p
 Iron fan is weaker than gravity. If entity stands on two fans at once, then their force adds up.
 
 ### Redstone fan
-Redstone fan needs redstone signal to turn on. Others are always active.
+Redstone fan has range depending on redstone signal strength.
 
 ### Configurable fan
 Range of this fan can be configured by right clicking on it (0 blocks - 15 blocks).
