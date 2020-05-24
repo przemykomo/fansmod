@@ -1,7 +1,6 @@
 package xyz.przemyk.fansmod.blocks;
 
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.AxisAlignedBB;
 import xyz.przemyk.fansmod.Config;
 
 public class ConfigurableFanTile extends FanTile {
