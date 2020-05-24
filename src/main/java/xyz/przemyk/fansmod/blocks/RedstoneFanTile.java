@@ -7,7 +7,7 @@ public class RedstoneFanTile extends FanTile  {
     public RedstoneFanTile() {
         super(ModBlocks.REDSTONE_FAN_TILE);
         fanSpeed = Config.REDSTONE_FAN_SPEED.get();
-        boxLength = 0;
+        range = 0;
     }
 
     @Override
@@ -19,9 +19,9 @@ public class RedstoneFanTile extends FanTile  {
                 getDirection();
             }
 
-            boxLength =  world.getRedstonePowerFromNeighbors(pos);
-            getScan();
-            if (boxLength > 0) {
+            range =  world.getRedstonePowerFromNeighbors(pos);
+            scan = getScan(range);
+            if (range > 0) {
                 moveEntities();
             }
         }

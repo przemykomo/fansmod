@@ -16,6 +16,9 @@ public class ModBlocks {
     @ObjectHolder(FansMod.MODID + ":redstone_fan_tile")
     public static final TileEntityType<RedstoneFanTile> REDSTONE_FAN_TILE = null;
 
+    @ObjectHolder(FansMod.MODID + ":sticky_fan_tile")
+    public static final TileEntityType<StickyFanTile> STICKY_FAN_TILE = null;
+
     //BLOCKS
     @ObjectHolder(FansMod.MODID + ":iron_fan")
     public static final FanBlock IRON_FAN_BLOCK = null;
@@ -34,4 +37,7 @@ public class ModBlocks {
 
     @ObjectHolder(FansMod.MODID + ":configurable_fan")
     public static final ConfigurableFanBlock CONFIGURABLE_FAN_BLOCK = null;
+
+    @ObjectHolder(FansMod.MODID + ":sticky_fan")
+    public static final StickyFanBlock STICKY_FAN_BLOCK = null;
 }
