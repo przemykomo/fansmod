@@ -27,6 +27,7 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue DIAMOND_FAN_SPEED;
     public static ForgeConfigSpec.DoubleValue EMERALD_FAN_SPEED;
     public static ForgeConfigSpec.DoubleValue CONFIGURABLE_FAN_SPEED;
+    public static ForgeConfigSpec.DoubleValue REDSTONE_FAN_SPEED;
 
     static {
         COMMON_BUILDER.comment("Fans settings").push(CATEGORY_GENERAL);
@@ -39,7 +40,6 @@ public class Config {
                 .defineInRange("diamondFanRange", 12, 0, Integer.MAX_VALUE);
         EMERALD_FAN_RANGE = COMMON_BUILDER.comment("Emerald fan range (in blocks)")
                 .defineInRange("emeraldFanRange", 16, 0, Integer.MAX_VALUE);
-
         CONFIGURABLE_FAN_MAX_RANGE = COMMON_BUILDER.comment("Configurable fan max range (in blocks)")
                 .defineInRange("configurableFanMaxRange", 15, 1, 15);
 
@@ -53,6 +53,8 @@ public class Config {
                 .defineInRange("emeraldFanSpeed", 0.2, 0, 1000D);
         CONFIGURABLE_FAN_SPEED = COMMON_BUILDER.comment("Configurable fan speed")
                 .defineInRange("configurableFanSpeed", 0.15, 0, 1000D);
+        REDSTONE_FAN_SPEED = COMMON_BUILDER.comment("Redstone fan speed")
+                .defineInRange("redstoneFanSpeed", 0.13, 0, 1000D);
 
         COMMON_BUILDER.pop();
 

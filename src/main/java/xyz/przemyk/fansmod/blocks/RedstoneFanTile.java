@@ -1,10 +1,12 @@
 package xyz.przemyk.fansmod.blocks;
 
+import xyz.przemyk.fansmod.Config;
+
 public class RedstoneFanTile extends FanTile  {
 
     public RedstoneFanTile() {
         super(ModBlocks.REDSTONE_FAN_TILE);
-        fanSpeed = 0.13;
+        fanSpeed = Config.REDSTONE_FAN_SPEED.get();
         boxLength = 0;
     }
 
