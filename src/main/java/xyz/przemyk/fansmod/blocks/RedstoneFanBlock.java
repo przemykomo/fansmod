@@ -44,4 +44,6 @@ public class RedstoneFanBlock extends FanBlock {
         super.fillStateContainer(builder);
         builder.add(POWERED);
     }
+
+
 }
