@@ -10,13 +10,14 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.FansMod;
+import xyz.przemyk.fansmod.Registration;
 
 import java.util.List;
 
 public class FanTile extends TileEntity implements ITickableTileEntity {
 
     public FanTile() {
-        super(ModBlocks.FAN_TILE);
+        super(Registration.FAN_TILE.get());
     }
 
     protected FanTile(TileEntityType<?> tileEntityTypeIn) {

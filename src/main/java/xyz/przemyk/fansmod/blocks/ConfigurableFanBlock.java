@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -15,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import xyz.przemyk.fansmod.Config;
 
 import javax.annotation.Nullable;
 
@@ -46,8 +44,13 @@ public class ConfigurableFanBlock extends FanBlock {
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (player.isCrouching()) {
+            worldIn.setBlockState(pos, state.with(LEVEL, 0), 2);
+        } else {
             worldIn.setBlockState(pos, state.cycle(LEVEL), 2);
-            ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
-            return ActionResultType.SUCCESS;
+        }
+
+        ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
+        return ActionResultType.SUCCESS;
     }
 }

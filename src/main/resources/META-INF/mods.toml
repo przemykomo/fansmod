@@ -19,7 +19,7 @@ version="1.1.4.0" #mandatory
 displayName="Fans Mod" #mandatory
 logoFile="logo_scaled.png" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="http://przemyk.xyz/" #optional
+displayURL="https://przemyk.xyz/mods/fansmod/index.html" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 This mod adds fans.
