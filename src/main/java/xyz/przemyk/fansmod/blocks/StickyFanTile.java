@@ -11,6 +11,7 @@ import java.util.List;
 
 public class StickyFanTile extends  FanTile {
 
+    @SuppressWarnings("FieldCanBeLocal")
     private final double stickyRange = 0.1;
     protected AxisAlignedBB stickyScan;
 
@@ -53,6 +54,7 @@ public class StickyFanTile extends  FanTile {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected AxisAlignedBB getScanDouble(double boxLength) {
         switch (fanDirection) {
             case DOWN:
