@@ -43,8 +43,13 @@ public class ConfigurableFanBlock extends FanBlock {
     @SuppressWarnings("deprecation")
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (player.isSneaking()) {
+            worldIn.setBlockState(pos, state.with(LEVEL, 0), 2);
+        } else {
             worldIn.setBlockState(pos, state.cycle(LEVEL), 2);
-            ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
-            return true;
+        }
+
+        ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
+        return true;
     }
 }
