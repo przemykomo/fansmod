@@ -6,6 +6,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import xyz.przemyk.fansmod.Config;
+import xyz.przemyk.fansmod.Registration;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class StickyFanTile extends  FanTile {
     protected AxisAlignedBB stickyScan;
 
     public StickyFanTile() {
-        super(ModBlocks.STICKY_FAN_TILE);
+        super(Registration.STICKY_FAN_TILE.get());
         fanSpeed = Config.GOLD_FAN_SPEED.get();
         range = Config.GOLD_FAN_RANGE.get();
     }
