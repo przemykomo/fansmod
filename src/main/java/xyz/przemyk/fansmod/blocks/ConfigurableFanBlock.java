@@ -46,8 +46,13 @@ public class ConfigurableFanBlock extends FanBlock {
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (player.isCrouching()) {
+            worldIn.setBlockState(pos, state.with(LEVEL, 0), 2);
+        } else {
             worldIn.setBlockState(pos, state.cycle(LEVEL), 2);
-            ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
-            return ActionResultType.SUCCESS;
+        }
+
+        ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
+        return ActionResultType.SUCCESS;
     }
 }
