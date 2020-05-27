@@ -1,21 +1,9 @@
 {
-    "parent": "block/cube_directional",
-    "display": {
-        "firstperson_righthand": {
-            "rotation": [ 0, 135, 0 ],
-            "translation": [ 0, 0, 0 ],
-            "scale": [ 0.40, 0.40, 0.40 ]
-        }
-    },
+    "parent": "fansmod:block/test_fan",
     "textures": {
         "particle": "fansmod:block/configurable_fan_bottom",
-        "down": "#side",
-        "up": "#side",
-        "north": "#front",
         "front": "fansmod:block/configurable_fan",
-        "east": "#side",
         "south": "fansmod:block/configurable_fan_bottom",
-        "west": "#side",
         "side": "fansmod:block/configurable_fan_side"
     }
 }
