@@ -10,7 +10,7 @@ public class ConfigurableFanTile extends FanTile {
         super(Registration.CONFIGURABLE_FAN_TILE.get());
 
         fanSpeed = Config.CONFIGURABLE_FAN_SPEED.get();
-        range = 0;
+        maxRange = 0;
         fanDirection = Direction.NORTH;
     }
 
@@ -20,18 +20,19 @@ public class ConfigurableFanTile extends FanTile {
             if (firstTick) {
                 firstTick = false;
 
-                range = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
+                maxRange = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
                 getDirection();
-                scan= getScan(range);
             }
 
-            moveEntities();
+            getRange();
+            if (range > 0) {
+                scan = getScan(range);
+                moveEntities();
+            }
         }
     }
 
     void update() {
-        range = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
-
-        scan = getScan(range);
+        maxRange = world.getBlockState(pos).get(ConfigurableFanBlock.LEVEL);
     }
 }

@@ -8,7 +8,7 @@ public class RedstoneFanTile extends FanTile  {
     public RedstoneFanTile() {
         super(Registration.REDSTONE_FAN_TILE.get());
         fanSpeed = Config.REDSTONE_FAN_SPEED.get();
-        range = 0;
+        maxRange = 0;
     }
 
     @Override
@@ -20,10 +20,13 @@ public class RedstoneFanTile extends FanTile  {
                 getDirection();
             }
 
-            range =  world.getRedstonePowerFromNeighbors(pos);
-            scan = getScan(range);
-            if (range > 0) {
-                moveEntities();
+            maxRange =  world.getRedstonePowerFromNeighbors(pos);
+            if (maxRange > 0) {
+                getRange();
+                if (range > 0) {
+                    scan = getScan(range);
+                    moveEntities();
+                }
             }
         }
     }
