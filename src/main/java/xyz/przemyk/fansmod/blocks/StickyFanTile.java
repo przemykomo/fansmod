@@ -19,7 +19,7 @@ public class StickyFanTile extends  FanTile {
     public StickyFanTile() {
         super(Registration.STICKY_FAN_TILE.get());
         fanSpeed = Config.GOLD_FAN_SPEED.get();
-        range = Config.GOLD_FAN_RANGE.get();
+        maxRange = Config.GOLD_FAN_RANGE.get();
     }
 
     @Override
@@ -29,11 +29,14 @@ public class StickyFanTile extends  FanTile {
                 firstTick = false;
 
                 getDirection();
-                scan = getScan(range);
                 stickyScan = getScanDouble(stickyRange);
             }
 
-            moveEntities();
+            getRange();
+            if (range > 0) {
+                scan = getScan(range);
+                moveEntities();
+            }
         }
     }
 

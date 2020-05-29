@@ -1,5 +1,6 @@
 package xyz.przemyk.fansmod.blocks;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -8,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.FansMod;
 import xyz.przemyk.fansmod.Registration;
@@ -27,6 +29,7 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
     protected boolean firstTick = true;
 
     protected double fanSpeed;
+    protected int maxRange;
     protected int range;
 
     protected Direction fanDirection;
@@ -43,28 +46,44 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
                 switch (getBlockState().getBlock().getRegistryName().toString()) {
                     case FansMod.MODID + ":iron_fan":
                         fanSpeed = Config.IRON_FAN_SPEED.get();
-                        range = Config.IRON_FAN_RANGE.get();
+                        maxRange = Config.IRON_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":gold_fan":
                         fanSpeed = Config.GOLD_FAN_SPEED.get();
-                        range = Config.GOLD_FAN_RANGE.get();
+                        maxRange = Config.GOLD_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":diamond_fan":
                         fanSpeed = Config.DIAMOND_FAN_SPEED.get();
-                        range = Config.DIAMOND_FAN_RANGE.get();
+                        maxRange = Config.DIAMOND_FAN_RANGE.get();
                         break;
                     case FansMod.MODID + ":emerald_fan":
                         fanSpeed = Config.EMERALD_FAN_SPEED.get();
-                        range = Config.EMERALD_FAN_RANGE.get();
+                        maxRange = Config.EMERALD_FAN_RANGE.get();
                         break;
                 }
 
                 getDirection();
-                scan = getScan(range);
             }
 
-            moveEntities();
+            getRange();
+            if (range > 0) {
+                scan = getScan(range);
+                moveEntities();
+            }
         }
+    }
+
+    protected void getRange() {
+        for (int i = 1; i <= maxRange; ++i) {
+            BlockPos scanPos = pos.offset(fanDirection, i);
+            BlockState blockState =  world.getBlockState(scanPos);
+            if (blockState.isSolidSide(world, scanPos, fanDirection.getOpposite())
+            ||  blockState.isSolidSide(world, scanPos, fanDirection)) {
+                range = i - 1;
+                return;
+            }
+        }
+        range = maxRange;
     }
 
     protected void getDirection() {
