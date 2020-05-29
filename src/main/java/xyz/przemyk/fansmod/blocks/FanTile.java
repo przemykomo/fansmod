@@ -1,5 +1,6 @@
 package xyz.przemyk.fansmod.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -77,8 +78,8 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
         for (int i = 1; i <= maxRange; ++i) {
             BlockPos scanPos = pos.offset(fanDirection, i);
             BlockState blockState =  world.getBlockState(scanPos);
-            if (blockState.isSolidSide(world, scanPos, fanDirection.getOpposite())
-            ||  blockState.isSolidSide(world, scanPos, fanDirection)) {
+            if (Block.hasSolidSide(blockState, world, scanPos, fanDirection.getOpposite())
+            ||  Block.hasSolidSide(blockState, world, scanPos, fanDirection)) {
                 range = i - 1;
                 return;
             }
