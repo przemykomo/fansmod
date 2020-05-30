@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "sbs",
+        "s s"
+    ],
+    "key":
+    {
+        "b":
+        {
+            "item": "minecraft:iron_boots"
+        },
+        "s":
+        {
+            "tag": "forge:slimeballs"
+        }
+    },
+    "result":
+    {
+        "item": "fansmod:sticky_boots",
+        "count": 1
+    }
+}

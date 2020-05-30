@@ -3,6 +3,7 @@ package xyz.przemyk.fansmod.blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -115,6 +116,12 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
     }
 
     protected void addMotion(Entity entity) {
+        if (entity instanceof PlayerEntity &&
+                ((PlayerEntity) entity).getItemStackFromSlot(EquipmentSlotType.FEET).getItem()
+                                                        == Registration.STICKY_BOOTS_ITEM.get() &&
+                entity.onGround) {
+            return;
+        }
         switch (fanDirection) {
             case DOWN:
                 entity.setMotion(entity.getMotion().x, entity.getMotion().y - fanSpeed, entity.getMotion().z);
