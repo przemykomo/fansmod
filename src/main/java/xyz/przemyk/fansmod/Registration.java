@@ -12,6 +12,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.przemyk.fansmod.blocks.*;
+import xyz.przemyk.fansmod.items.StickyBootsItem;
 
 @SuppressWarnings("unused")
 public class Registration {
@@ -50,6 +51,8 @@ public class Registration {
     }
 
     public static final RegistryObject<Item> PROPELLER = ITEMS.register("propeller", () -> new Item(new Item.Properties().group(FANS_ITEM_GROUP)));
+    public static final RegistryObject<StickyBootsItem> STICKY_BOOTS_ITEM = ITEMS.register("sticky_boots", StickyBootsItem::new);
+
     public static final RegistryObject<BlockItem> IRON_FAN_ITEM = ITEMS.register("iron_fan", () -> createBlockItem(IRON_FAN_BLOCK));
     public static final RegistryObject<BlockItem> GOLD_FAN_ITEM = ITEMS.register("gold_fan", () -> createBlockItem(GOLD_FAN_BLOCK));
     public static final RegistryObject<BlockItem> DIAMOND_FAN_ITEM = ITEMS.register("diamond_fan", () -> createBlockItem(DIAMOND_FAN_BLOCK));
