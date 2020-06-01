@@ -28,3 +28,4 @@ Fans don't push you while you are standing on ground.
 ![Redstone fan](./screenshots/crafting_redstone.png)
 ![Configurable fan](./screenshots/crafting_configurable.png)
 ![Sticky fan](./screenshots/crafting_sticky.png)
+![Sticky boots](./screenshots/crafting_sticky_boots.png)
