@@ -16,6 +16,9 @@ Range of this fan can be configured by right clicking on it (0 blocks - 15 block
 ### Sticky fan
 Doesn't push entities while they are touching it.
 
+### Sticky boots
+Fans don't push you while you are standing on ground.
+
 ### Recipes
 ![Propeller](./screenshots/crafting_propeller.png)
 ![Iron fan](./screenshots/crafting_iron.png)
