@@ -5,15 +5,15 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
-import xyz.przemyk.fansmod.Registration;
 import xyz.przemyk.fansmod.materials.ModArmorMaterial;
+import xyz.przemyk.fansmod.registry.Items;
 
 import java.util.UUID;
 
 public class StickyBootsItem extends ArmorItem {
 
     public StickyBootsItem() {
-        super(ModArmorMaterial.STICKY, EquipmentSlotType.FEET, new Properties().group(Registration.FANS_ITEM_GROUP));
+        super(ModArmorMaterial.STICKY, EquipmentSlotType.FEET, new Properties().group(Items.FANS_ITEM_GROUP));
     }
 
     @Override

@@ -13,14 +13,16 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.FansMod;
-import xyz.przemyk.fansmod.Registration;
+import xyz.przemyk.fansmod.registry.Blocks;
+import xyz.przemyk.fansmod.registry.Items;
+import xyz.przemyk.fansmod.registry.TileEntities;
 
 import java.util.List;
 
 public class FanTile extends TileEntity implements ITickableTileEntity {
 
     public FanTile() {
-        super(Registration.FAN_TILE.get());
+        super(TileEntities.FAN_TILE.get());
     }
 
     protected FanTile(TileEntityType<?> tileEntityTypeIn) {
@@ -118,7 +120,7 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
     protected void addMotion(Entity entity) {
         if (entity instanceof PlayerEntity &&
                 ((PlayerEntity) entity).getItemStackFromSlot(EquipmentSlotType.FEET).getItem()
-                                                        == Registration.STICKY_BOOTS_ITEM.get() &&
+                                                        == Items.STICKY_BOOTS_ITEM.get() &&
                 entity.onGround) {
             return;
         }

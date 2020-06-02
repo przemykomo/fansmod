@@ -2,12 +2,12 @@ package xyz.przemyk.fansmod.blocks;
 
 import net.minecraft.util.Direction;
 import xyz.przemyk.fansmod.Config;
-import xyz.przemyk.fansmod.Registration;
+import xyz.przemyk.fansmod.registry.TileEntities;
 
 public class ConfigurableFanTile extends FanTile {
 
     public ConfigurableFanTile() {
-        super(Registration.CONFIGURABLE_FAN_TILE.get());
+        super(TileEntities.CONFIGURABLE_FAN_TILE.get());
 
         fanSpeed = Config.CONFIGURABLE_FAN_SPEED.get();
         maxRange = 0;
