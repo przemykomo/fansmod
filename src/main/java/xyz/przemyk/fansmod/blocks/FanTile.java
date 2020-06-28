@@ -121,7 +121,7 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
         if (entity instanceof PlayerEntity &&
                 ((PlayerEntity) entity).getItemStackFromSlot(EquipmentSlotType.FEET).getItem()
                                                         == Items.STICKY_BOOTS_ITEM.get() &&
-                entity.onGround) {
+                entity.func_233570_aj_()) {
             return;
         }
         switch (fanDirection) {

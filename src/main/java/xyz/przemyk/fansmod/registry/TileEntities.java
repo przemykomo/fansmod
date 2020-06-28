@@ -14,7 +14,7 @@ import xyz.przemyk.fansmod.blocks.StickyFanTile;
 @SuppressWarnings("unused")
 public class TileEntities {
 
-    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, FansMod.MODID);
+    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, FansMod.MODID);
 
     public static void init() {
         TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());

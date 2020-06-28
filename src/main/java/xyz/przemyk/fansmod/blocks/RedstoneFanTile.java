@@ -1,7 +1,6 @@
 package xyz.przemyk.fansmod.blocks;
 
 import xyz.przemyk.fansmod.Config;
-import xyz.przemyk.fansmod.registry.Blocks;
 import xyz.przemyk.fansmod.registry.TileEntities;
 
 public class RedstoneFanTile extends FanTile  {

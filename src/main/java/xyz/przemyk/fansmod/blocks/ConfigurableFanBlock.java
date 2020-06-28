@@ -47,7 +47,7 @@ public class ConfigurableFanBlock extends FanBlock {
         if (player.isCrouching()) {
             worldIn.setBlockState(pos, state.with(LEVEL, 0), 2);
         } else {
-            worldIn.setBlockState(pos, state.cycle(LEVEL), 2);
+            worldIn.setBlockState(pos, state.func_235896_a_(LEVEL), 2);
         }
 
         ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();

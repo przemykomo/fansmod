@@ -4,15 +4,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import xyz.przemyk.fansmod.Config;
-import xyz.przemyk.fansmod.registry.Blocks;
 import xyz.przemyk.fansmod.registry.TileEntities;
 
 import java.util.List;
 
-public class StickyFanTile extends  FanTile {
+public class StickyFanTile extends FanTile {
 
+    //TODO: move stickyRange to config
     @SuppressWarnings("FieldCanBeLocal")
     private final double stickyRange = 0.1;
     protected AxisAlignedBB stickyScan;
@@ -65,17 +65,17 @@ public class StickyFanTile extends  FanTile {
             case DOWN:
             case NORTH:
             case WEST:
-                Vec3d max = offsetVec3d(pos.getX(), pos.getY(), pos.getZ(),
+                Vector3d max = offsetVec3d(pos.getX(), pos.getY(), pos.getZ(),
                         fanDirection, boxLength + 1.0).add(1.0, 1.0, 1.0);
                 return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), max.x, max.y, max.z);
             default:
-                Vec3d max2 = offsetVec3d(pos.getX(), pos.getY(), pos.getZ(),
+                Vector3d max2 = offsetVec3d(pos.getX(), pos.getY(), pos.getZ(),
                         fanDirection, boxLength).add(1.0, 1.0, 1.0);
                 return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), max2.x, max2.y, max2.z);
         }
     }
 
-    public static Vec3d offsetVec3d(double x, double y, double z, Direction facing, double n) {
-        return n == 0 ? new Vec3d(x, y, z) : new Vec3d(x + facing.getXOffset() * n, y + facing.getYOffset() * n, z + facing.getZOffset() * n);
+    public static Vector3d offsetVec3d(double x, double y, double z, Direction facing, double n) {
+        return n == 0 ? new Vector3d(x, y, z) : new Vector3d(x + facing.getXOffset() * n, y + facing.getYOffset() * n, z + facing.getZOffset() * n);
     }
 }
