@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import xyz.przemyk.fansmod.tiles.RedstoneFanTile;
 
 import javax.annotation.Nullable;
 
@@ -18,9 +19,8 @@ public class RedstoneFanBlock extends FanBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+    public RedstoneFanTile createTileEntity(BlockState state, IBlockReader world) {
         return new RedstoneFanTile();
     }
 
@@ -44,6 +44,4 @@ public class RedstoneFanBlock extends FanBlock {
         super.fillStateContainer(builder);
         builder.add(POWERED);
     }
-
-
 }

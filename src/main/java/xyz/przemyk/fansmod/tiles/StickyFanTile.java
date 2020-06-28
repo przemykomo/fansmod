@@ -1,4 +1,4 @@
-package xyz.przemyk.fansmod.blocks;
+package xyz.przemyk.fansmod.tiles;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,33 +12,26 @@ import java.util.List;
 
 public class StickyFanTile extends FanTile {
 
-    //TODO: move stickyRange to config
-    @SuppressWarnings("FieldCanBeLocal")
-    private final double stickyRange = 0.1;
     protected AxisAlignedBB stickyScan;
 
     public StickyFanTile() {
         super(TileEntities.STICKY_FAN_TILE.get());
-        fanSpeed = Config.GOLD_FAN_SPEED.get();
-        maxRange = Config.GOLD_FAN_RANGE.get();
     }
 
     @Override
-    public void tick() {
-        if (world != null) {
-            if (firstTick) {
-                firstTick = false;
+    protected int getMaxRange() {
+        return Config.GOLD_FAN_RANGE.get();
+    }
 
-                getDirection();
-                stickyScan = getScanDouble(stickyRange);
-            }
+    @Override
+    protected double getFanSpeed() {
+        return Config.GOLD_FAN_SPEED.get();
+    }
 
-            getRange();
-            if (range > 0) {
-                scan = getScan(range);
-                moveEntities();
-            }
-        }
+    @Override
+    protected void firstTick() {
+        super.firstTick();
+        stickyScan = getScanDouble(Config.STICKY_RANGE.get());
     }
 
     protected void moveEntities() {

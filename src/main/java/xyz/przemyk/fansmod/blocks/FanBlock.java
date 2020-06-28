@@ -14,10 +14,11 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import xyz.przemyk.fansmod.tiles.FanTile;
 
 import javax.annotation.Nullable;
 
-public class FanBlock extends Block {
+public abstract class FanBlock extends Block {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
@@ -51,9 +52,6 @@ public class FanBlock extends Block {
         return true;
     }
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new FanTile();
-    }
+    public abstract FanTile createTileEntity(BlockState state, IBlockReader world);
 }

@@ -1,4 +1,4 @@
-package xyz.przemyk.fansmod.blocks;
+package xyz.przemyk.fansmod.tiles;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -11,32 +11,25 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import xyz.przemyk.fansmod.Config;
-import xyz.przemyk.fansmod.FansMod;
-import xyz.przemyk.fansmod.registry.Blocks;
 import xyz.przemyk.fansmod.registry.Items;
-import xyz.przemyk.fansmod.registry.TileEntities;
 
 import java.util.List;
 
-public class FanTile extends TileEntity implements ITickableTileEntity {
+public abstract class FanTile extends TileEntity implements ITickableTileEntity {
 
-    public FanTile() {
-        super(TileEntities.FAN_TILE.get());
-    }
-
-    protected FanTile(TileEntityType<?> tileEntityTypeIn) {
+    protected FanTile(TileEntityType<? extends FanTile> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
     protected boolean firstTick = true;
 
-    protected double fanSpeed;
-    protected int maxRange;
     protected int range;
 
     protected Direction fanDirection;
     protected AxisAlignedBB scan;
+
+    protected abstract double getFanSpeed();
+    protected abstract int getMaxRange();
 
     @Override
     public void tick() {
@@ -45,27 +38,7 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
             // Cannot override onLoad because this code needs to get block state
             if (firstTick) {
                 firstTick = false;
-
-                switch (getBlockState().getBlock().getRegistryName().toString()) {
-                    case FansMod.MODID + ":iron_fan":
-                        fanSpeed = Config.IRON_FAN_SPEED.get();
-                        maxRange = Config.IRON_FAN_RANGE.get();
-                        break;
-                    case FansMod.MODID + ":gold_fan":
-                        fanSpeed = Config.GOLD_FAN_SPEED.get();
-                        maxRange = Config.GOLD_FAN_RANGE.get();
-                        break;
-                    case FansMod.MODID + ":diamond_fan":
-                        fanSpeed = Config.DIAMOND_FAN_SPEED.get();
-                        maxRange = Config.DIAMOND_FAN_RANGE.get();
-                        break;
-                    case FansMod.MODID + ":emerald_fan":
-                        fanSpeed = Config.EMERALD_FAN_SPEED.get();
-                        maxRange = Config.EMERALD_FAN_RANGE.get();
-                        break;
-                }
-
-                getDirection();
+                firstTick();
             }
 
             getRange();
@@ -76,8 +49,12 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
         }
     }
 
+    protected void firstTick() {
+        getDirection();
+    }
+
     protected void getRange() {
-        for (int i = 1; i <= maxRange; ++i) {
+        for (int i = 1; i <= getMaxRange(); ++i) {
             BlockPos scanPos = pos.offset(fanDirection, i);
             BlockState blockState =  world.getBlockState(scanPos);
             if (blockState.isSolidSide(world, scanPos, fanDirection.getOpposite())
@@ -86,7 +63,7 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
                 return;
             }
         }
-        range = maxRange;
+        range = getMaxRange();
     }
 
     protected void getDirection() {
@@ -119,29 +96,29 @@ public class FanTile extends TileEntity implements ITickableTileEntity {
 
     protected void addMotion(Entity entity) {
         if (entity instanceof PlayerEntity &&
-                ((PlayerEntity) entity).getItemStackFromSlot(EquipmentSlotType.FEET).getItem()
-                                                        == Items.STICKY_BOOTS_ITEM.get() &&
-                entity.func_233570_aj_()) {
+                ((PlayerEntity) entity).getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == Items.STICKY_BOOTS_ITEM.get()
+                && entity.func_233570_aj_()) {
             return;
         }
+
         switch (fanDirection) {
             case DOWN:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y - fanSpeed, entity.getMotion().z);
+                entity.setMotion(entity.getMotion().x, entity.getMotion().y - getFanSpeed(), entity.getMotion().z);
                 break;
             case UP:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y + fanSpeed, entity.getMotion().z);
+                entity.setMotion(entity.getMotion().x, entity.getMotion().y + getFanSpeed(), entity.getMotion().z);
                 break;
             case NORTH:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y, entity.getMotion().z - fanSpeed);
+                entity.setMotion(entity.getMotion().x, entity.getMotion().y, entity.getMotion().z - getFanSpeed());
                 break;
             case SOUTH:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y, entity.getMotion().z + fanSpeed);
+                entity.setMotion(entity.getMotion().x, entity.getMotion().y, entity.getMotion().z + getFanSpeed());
                 break;
             case WEST:
-                entity.setMotion(entity.getMotion().x - fanSpeed, entity.getMotion().y, entity.getMotion().z);
+                entity.setMotion(entity.getMotion().x - getFanSpeed(), entity.getMotion().y, entity.getMotion().z);
                 break;
             case EAST:
-                entity.setMotion(entity.getMotion().x + fanSpeed, entity.getMotion().y, entity.getMotion().z);
+                entity.setMotion(entity.getMotion().x + getFanSpeed(), entity.getMotion().y, entity.getMotion().z);
                 break;
         }
     }

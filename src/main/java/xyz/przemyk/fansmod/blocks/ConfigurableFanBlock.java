@@ -7,13 +7,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import xyz.przemyk.fansmod.tiles.ConfigurableFanTile;
 
 import javax.annotation.Nullable;
 
@@ -24,9 +24,8 @@ public class ConfigurableFanBlock extends FanBlock {
      */
     public static IntegerProperty LEVEL;
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+    public ConfigurableFanTile createTileEntity(BlockState state, IBlockReader world) {
         return new ConfigurableFanTile();
     }
 
@@ -50,7 +49,7 @@ public class ConfigurableFanBlock extends FanBlock {
             worldIn.setBlockState(pos, state.func_235896_a_(LEVEL), 2);
         }
 
-        ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
+//        ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
         return ActionResultType.SUCCESS;
     }
 }

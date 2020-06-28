@@ -29,6 +29,8 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue CONFIGURABLE_FAN_SPEED;
     public static ForgeConfigSpec.DoubleValue REDSTONE_FAN_SPEED;
 
+    public static ForgeConfigSpec.DoubleValue STICKY_RANGE;
+
     static {
         COMMON_BUILDER.comment("Fans settings").push(CATEGORY_GENERAL);
 
@@ -55,6 +57,9 @@ public class Config {
                 .defineInRange("configurableFanSpeed", 0.15, 0, 1000D);
         REDSTONE_FAN_SPEED = COMMON_BUILDER.comment("Redstone fan speed")
                 .defineInRange("redstoneFanSpeed", 0.13, 0, 1000D);
+
+        STICKY_RANGE = COMMON_BUILDER.comment("Max distance from sticky fan considered as touching fan. Entities within this range aren't pushed.")
+                .defineInRange("stickyRange", 0.1, 0, 1000D);
 
         COMMON_BUILDER.pop();
 

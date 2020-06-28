@@ -17,10 +17,10 @@ public class Blocks {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final RegistryObject<FanBlock> IRON_FAN_BLOCK = BLOCKS.register("iron_fan", FanBlock::new);
-    public static final RegistryObject<FanBlock> GOLD_FAN_BLOCK = BLOCKS.register("gold_fan", FanBlock::new);
-    public static final RegistryObject<FanBlock> DIAMOND_FAN_BLOCK = BLOCKS.register("diamond_fan", FanBlock::new);
-    public static final RegistryObject<FanBlock> EMERALD_FAN_BLOCK = BLOCKS.register("emerald_fan", FanBlock::new);
+    public static final RegistryObject<IronFanBlock> IRON_FAN_BLOCK = BLOCKS.register("iron_fan", IronFanBlock::new);
+    public static final RegistryObject<GoldFanBlock> GOLD_FAN_BLOCK = BLOCKS.register("gold_fan", GoldFanBlock::new);
+    public static final RegistryObject<DiamondFanBlock> DIAMOND_FAN_BLOCK = BLOCKS.register("diamond_fan", DiamondFanBlock::new);
+    public static final RegistryObject<EmeraldFanBlock> EMERALD_FAN_BLOCK = BLOCKS.register("emerald_fan", EmeraldFanBlock::new);
 
     public static final RegistryObject<RedstoneFanBlock> REDSTONE_FAN_BLOCK = BLOCKS.register("redstone_fan", RedstoneFanBlock::new);
     public static final RegistryObject<ConfigurableFanBlock> CONFIGURABLE_FAN_BLOCK = BLOCKS.register("configurable_fan", ConfigurableFanBlock::new);

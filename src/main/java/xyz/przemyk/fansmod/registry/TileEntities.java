@@ -6,10 +6,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.przemyk.fansmod.FansMod;
-import xyz.przemyk.fansmod.blocks.ConfigurableFanTile;
-import xyz.przemyk.fansmod.blocks.FanTile;
-import xyz.przemyk.fansmod.blocks.RedstoneFanTile;
-import xyz.przemyk.fansmod.blocks.StickyFanTile;
+import xyz.przemyk.fansmod.tiles.*;
 
 @SuppressWarnings("unused")
 public class TileEntities {
@@ -20,11 +17,19 @@ public class TileEntities {
         TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final RegistryObject<TileEntityType<FanTile>> FAN_TILE = TILE_ENTITIES.register("fan_tile",
-            () -> TileEntityType.Builder.create(FanTile::new,
-                    Blocks.IRON_FAN_BLOCK.get(), Blocks.GOLD_FAN_BLOCK.get(),
-                    Blocks.DIAMOND_FAN_BLOCK.get(), Blocks.EMERALD_FAN_BLOCK.get())
-                    .build(null));
+
+    public static final RegistryObject<TileEntityType<IronFanTile>> IRON_FAN_TILE = TILE_ENTITIES.register("iron_fan_tile",
+            () -> TileEntityType.Builder.create(IronFanTile::new, Blocks.IRON_FAN_BLOCK.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<GoldFanTile>> GOLD_FAN_TILE = TILE_ENTITIES.register("gold_fan_tile",
+            () -> TileEntityType.Builder.create(GoldFanTile::new, Blocks.GOLD_FAN_BLOCK.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<DiamondFanTile>> DIAMOND_FAN_TILE = TILE_ENTITIES.register("diamond_fan_tile",
+            () -> TileEntityType.Builder.create(DiamondFanTile::new, Blocks.DIAMOND_FAN_BLOCK.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<EmeraldFanTile>> EMERALD_FAN_TILE = TILE_ENTITIES.register("emerald_fan_tile",
+            () -> TileEntityType.Builder.create(EmeraldFanTile::new, Blocks.EMERALD_FAN_BLOCK.get()).build(null));
+
 
     public static final RegistryObject<TileEntityType<RedstoneFanTile>> REDSTONE_FAN_TILE = TILE_ENTITIES.register("redstone_fan_tile",
             () -> TileEntityType.Builder.create(RedstoneFanTile::new, Blocks.REDSTONE_FAN_BLOCK.get()).build(null));
