@@ -1,0 +1,14 @@
+{
+    "block.fansmod.iron_fan": "Ventilador de Ferro",
+    "block.fansmod.gold_fan": "Ventilador de Ouro",
+    "block.fansmod.diamond_fan": "Ventilador de Diamante",
+    "block.fansmod.emerald_fan": "Ventilador de Esmeralda",
+    "block.fansmod.redstone_fan": "Ventilador de Redstone",
+    "block.fansmod.configurable_fan": "Ventilador Configurável",
+    "block.fansmod.sticky_fan": "Ventilador Pegajoso",
+
+    "item.fansmod.propeller": "Hélice",
+    "item.fansmod.sticky_boots": "Botas Pegajosas",
+
+    "itemGroup.fansmod": "Fans Mod"
+}
