@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "fansmod:item/leaf_blower"
+    }
+}

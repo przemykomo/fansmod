@@ -10,6 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.przemyk.fansmod.FansMod;
+import xyz.przemyk.fansmod.items.LeafBlowerItem;
 import xyz.przemyk.fansmod.items.StickyBootsItem;
 
 @SuppressWarnings("unused")
@@ -43,4 +44,6 @@ public class Items {
     public static final RegistryObject<BlockItem> REDSTONE_FAN_ITEM = ITEMS.register("redstone_fan", () -> createBlockItem(Blocks.REDSTONE_FAN_BLOCK));
     public static final RegistryObject<BlockItem> CONFIGURABLE_FAN_ITEM = ITEMS.register("configurable_fan", () -> createBlockItem(Blocks.CONFIGURABLE_FAN_BLOCK));
     public static final RegistryObject<BlockItem> STICKY_FAN_ITEM = ITEMS.register("sticky_fan", () -> createBlockItem(Blocks.STICKY_FAN_BLOCK));
+
+    public static final RegistryObject<LeafBlowerItem> LEAF_BLOWER_ITEM = ITEMS.register("leaf_blower", LeafBlowerItem::new);
 }
