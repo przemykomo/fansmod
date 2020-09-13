@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        " gg",
+        "iip",
+        " gg"
+    ],
+    "key":
+    {
+        "i":
+        {
+            "tag": "forge:ingots/iron"
+        },
+        "g":
+        {
+            "tag": "forge:ingots/gold"
+        },
+        "p":
+        {
+            "item": "fansmod:propeller"
+        }
+    },
+    "result":
+    {
+        "item": "fansmod:leaf_blower",
+        "count": 1
+    }
+}
