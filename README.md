@@ -19,6 +19,9 @@ Doesn't push entities while they are touching it.
 ### Sticky boots
 Fans don't push you while you are standing on ground.
 
+### Leaf blower
+Item used to push entities.
+
 ### Recipes
 ![Propeller](./screenshots/crafting_propeller.png)
 ![Iron fan](./screenshots/crafting_iron.png)
@@ -29,3 +32,4 @@ Fans don't push you while you are standing on ground.
 ![Configurable fan](./screenshots/crafting_configurable.png)
 ![Sticky fan](./screenshots/crafting_sticky.png)
 ![Sticky boots](./screenshots/crafting_sticky_boots.png)
+![Leaf blower](./screenshots/crafting_leaf_blower.png)
