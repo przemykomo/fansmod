@@ -1,0 +1,1 @@
+Improved texture for the configurable fan
