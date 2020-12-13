@@ -2,30 +2,21 @@ package xyz.przemyk.fansmod.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import xyz.przemyk.fansmod.tiles.RedstoneFanTile;
-
-import javax.annotation.Nullable;
 
 public class RedstoneFanBlock extends FanBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    @Override
-    public RedstoneFanTile createTileEntity(BlockState state, IBlockReader world) {
-        return new RedstoneFanTile();
-    }
+    public RedstoneFanBlock(Properties properties) {
+        super(properties, RedstoneFanTile::new);
 
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        worldIn.setBlockState(pos, state.with(FACING, getFacingFromEntity(pos, placer)).with(POWERED, worldIn.isBlockPowered(pos)), 2);
+        setDefaultState(getDefaultState().with(POWERED, false));
     }
 
     @SuppressWarnings("deprecation")

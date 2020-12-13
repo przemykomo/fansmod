@@ -2,9 +2,7 @@ package xyz.przemyk.fansmod.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
@@ -15,8 +13,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import xyz.przemyk.fansmod.tiles.ConfigurableFanTile;
 
-import javax.annotation.Nullable;
-
 public class ConfigurableFanBlock extends FanBlock {
 
     /**
@@ -24,14 +20,15 @@ public class ConfigurableFanBlock extends FanBlock {
      */
     public static IntegerProperty LEVEL;
 
-    @Override
-    public ConfigurableFanTile createTileEntity(BlockState state, IBlockReader world) {
-        return new ConfigurableFanTile();
+    public ConfigurableFanBlock(Properties properties) {
+        super(properties, ConfigurableFanTile::new);
+
+        setDefaultState(getDefaultState().with(LEVEL, 0));
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        worldIn.setBlockState(pos, state.with(FACING, getFacingFromEntity(pos, placer)).with(LEVEL, 0), 2);
+    public ConfigurableFanTile createTileEntity(BlockState state, IBlockReader world) {
+        return new ConfigurableFanTile();
     }
 
     @Override

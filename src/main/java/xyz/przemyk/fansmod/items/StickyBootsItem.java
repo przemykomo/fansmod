@@ -23,7 +23,7 @@ public class StickyBootsItem extends ArmorItem {
         Multimap<Attribute, AttributeModifier> multimap = HashMultimap.create(super.getAttributeModifiers(equipmentSlot));
 
         if (equipmentSlot == slot) {
-            multimap.put(Attributes.field_233821_d_, new AttributeModifier(UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"), "Speed", -0.3D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            multimap.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"), "Speed", -0.3D, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
         return multimap;

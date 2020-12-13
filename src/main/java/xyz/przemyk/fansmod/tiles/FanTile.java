@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import xyz.przemyk.fansmod.registry.Items;
 
 import java.util.List;
@@ -97,28 +98,29 @@ public abstract class FanTile extends TileEntity implements ITickableTileEntity 
     protected void addMotion(Entity entity) {
         if (entity instanceof PlayerEntity &&
                 ((PlayerEntity) entity).getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == Items.STICKY_BOOTS_ITEM.get()
-                && entity.func_233570_aj_()) {
+                && entity.isOnGround()) {
             return;
         }
 
+        Vector3d motion = entity.getMotion();
         switch (fanDirection) {
             case DOWN:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y - getFanSpeed(), entity.getMotion().z);
+                entity.setMotion(motion.x, motion.y - getFanSpeed(), motion.z);
                 break;
             case UP:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y + getFanSpeed(), entity.getMotion().z);
+                entity.setMotion(motion.x, motion.y + getFanSpeed(), motion.z);
                 break;
             case NORTH:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y, entity.getMotion().z - getFanSpeed());
+                entity.setMotion(motion.x, motion.y, motion.z - getFanSpeed());
                 break;
             case SOUTH:
-                entity.setMotion(entity.getMotion().x, entity.getMotion().y, entity.getMotion().z + getFanSpeed());
+                entity.setMotion(motion.x, motion.y, motion.z + getFanSpeed());
                 break;
             case WEST:
-                entity.setMotion(entity.getMotion().x - getFanSpeed(), entity.getMotion().y, entity.getMotion().z);
+                entity.setMotion(motion.x - getFanSpeed(), motion.y, motion.z);
                 break;
             case EAST:
-                entity.setMotion(entity.getMotion().x + getFanSpeed(), entity.getMotion().y, entity.getMotion().z);
+                entity.setMotion(motion.x + getFanSpeed(), motion.y, motion.z);
                 break;
         }
     }

@@ -1,12 +1,16 @@
 package xyz.przemyk.fansmod.registry;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.przemyk.fansmod.FansMod;
 import xyz.przemyk.fansmod.blocks.*;
+import xyz.przemyk.fansmod.tiles.*;
 
 @SuppressWarnings("unused")
 public class Blocks {
@@ -17,12 +21,12 @@ public class Blocks {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final RegistryObject<IronFanBlock> IRON_FAN_BLOCK = BLOCKS.register("iron_fan", IronFanBlock::new);
-    public static final RegistryObject<GoldFanBlock> GOLD_FAN_BLOCK = BLOCKS.register("gold_fan", GoldFanBlock::new);
-    public static final RegistryObject<DiamondFanBlock> DIAMOND_FAN_BLOCK = BLOCKS.register("diamond_fan", DiamondFanBlock::new);
-    public static final RegistryObject<EmeraldFanBlock> EMERALD_FAN_BLOCK = BLOCKS.register("emerald_fan", EmeraldFanBlock::new);
+    public static final RegistryObject<FanBlock> IRON_FAN_BLOCK = BLOCKS.register("iron_fan", () -> new FanBlock(AbstractBlock.Properties.create(Material.PISTON).sound(SoundType.WOOD).hardnessAndResistance(2.0f), IronFanTile::new));
+    public static final RegistryObject<FanBlock> GOLD_FAN_BLOCK = BLOCKS.register("gold_fan", () -> new FanBlock(AbstractBlock.Properties.create(Material.PISTON).sound(SoundType.WOOD).hardnessAndResistance(2.0f), GoldFanTile::new));
+    public static final RegistryObject<FanBlock> DIAMOND_FAN_BLOCK = BLOCKS.register("diamond_fan", () -> new FanBlock(AbstractBlock.Properties.create(Material.PISTON).sound(SoundType.WOOD).hardnessAndResistance(2.0f), DiamondFanTile::new));
+    public static final RegistryObject<FanBlock> EMERALD_FAN_BLOCK = BLOCKS.register("emerald_fan", () -> new FanBlock(AbstractBlock.Properties.create(Material.PISTON).sound(SoundType.WOOD).hardnessAndResistance(2.0f), EmeraldFanTile::new));
+    public static final RegistryObject<FanBlock> STICKY_FAN_BLOCK = BLOCKS.register("sticky_fan", () -> new FanBlock(AbstractBlock.Properties.create(Material.PISTON).sound(SoundType.WOOD).hardnessAndResistance(2.0f), StickyFanTile::new));
 
-    public static final RegistryObject<RedstoneFanBlock> REDSTONE_FAN_BLOCK = BLOCKS.register("redstone_fan", RedstoneFanBlock::new);
-    public static final RegistryObject<ConfigurableFanBlock> CONFIGURABLE_FAN_BLOCK = BLOCKS.register("configurable_fan", ConfigurableFanBlock::new);
-    public static final RegistryObject<StickyFanBlock> STICKY_FAN_BLOCK = BLOCKS.register("sticky_fan", StickyFanBlock::new);
+    public static final RegistryObject<RedstoneFanBlock> REDSTONE_FAN_BLOCK = BLOCKS.register("redstone_fan", () -> new RedstoneFanBlock(AbstractBlock.Properties.create(Material.PISTON).sound(SoundType.WOOD).hardnessAndResistance(2.0f)));
+    public static final RegistryObject<ConfigurableFanBlock> CONFIGURABLE_FAN_BLOCK = BLOCKS.register("configurable_fan", () -> new ConfigurableFanBlock(AbstractBlock.Properties.create(Material.PISTON).sound(SoundType.WOOD).hardnessAndResistance(2.0f)));
 }

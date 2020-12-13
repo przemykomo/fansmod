@@ -1,10 +1,10 @@
 modLoader="javafml" #mandatory
-loaderVersion="[34,)"
+loaderVersion="[35,)"
 license="GNU General Public License"
 #issueTrackerURL="http://my.issue.tracker/" #optional
 [[mods]] #mandatory
 modId="fansmod" #mandatory
-version="2.0.1.0" #mandatory
+version="2.0.1.1" #mandatory
 displayName="Fans Mod" #mandatory
 logoFile="logo_scaled.png" #optional
 displayURL="https://przemyk.xyz/mods/fansmod/index.html" #optional
@@ -14,13 +14,13 @@ This mod adds fans.
 [[dependencies.fansmod]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[34,)" #mandatory
+    versionRange="[35,)" #mandatory
     ordering="NONE"
     side="BOTH"
 # Here's another dependency
 [[dependencies.fansmod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.16.4]"
     ordering="NONE"
     side="BOTH"
