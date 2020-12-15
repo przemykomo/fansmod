@@ -4,7 +4,7 @@ license="GNU General Public License"
 #issueTrackerURL="http://my.issue.tracker/" #optional
 [[mods]] #mandatory
 modId="fansmod" #mandatory
-version="2.0.1.1" #mandatory
+version="2.0.1.2" #mandatory
 displayName="Fans Mod" #mandatory
 logoFile="logo_scaled.png" #optional
 displayURL="https://przemyk.xyz/mods/fansmod/index.html" #optional
