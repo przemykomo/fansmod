@@ -1,13 +1,15 @@
 package xyz.przemyk.fansmod.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import xyz.przemyk.fansmod.tiles.RedstoneFanTile;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RedstoneFanBlock extends FanBlock {
 
@@ -16,22 +18,22 @@ public class RedstoneFanBlock extends FanBlock {
     public RedstoneFanBlock(Properties properties) {
         super(properties, RedstoneFanTile::new);
 
-        setDefaultState(getDefaultState().with(POWERED, false));
+        registerDefaultState(defaultBlockState().setValue(POWERED, false));
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-        if (!worldIn.isRemote) {
-            if (state.get(POWERED) != worldIn.isBlockPowered(pos)) {
-                worldIn.setBlockState(pos, state.with(POWERED, worldIn.isBlockPowered(pos)), 2);
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        if (!worldIn.isClientSide) {
+            if (state.getValue(POWERED) != worldIn.hasNeighborSignal(pos)) {
+                worldIn.setBlock(pos, state.setValue(POWERED, worldIn.hasNeighborSignal(pos)), 2);
             }
         }
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(POWERED);
     }
 }

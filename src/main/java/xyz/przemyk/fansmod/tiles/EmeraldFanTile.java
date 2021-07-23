@@ -1,12 +1,14 @@
 package xyz.przemyk.fansmod.tiles;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.registry.TileEntities;
 
 public class EmeraldFanTile extends FanTile {
 
-    public EmeraldFanTile() {
-        super(TileEntities.EMERALD_FAN_TILE.get());
+    public EmeraldFanTile(BlockPos blockPos, BlockState blockState) {
+        super(TileEntities.EMERALD_FAN_TILE.get(), blockPos, blockState);
     }
 
     @Override

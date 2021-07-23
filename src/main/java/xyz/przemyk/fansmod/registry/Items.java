@@ -1,12 +1,12 @@
 package xyz.przemyk.fansmod.registry;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.przemyk.fansmod.FansMod;
@@ -22,19 +22,19 @@ public class Items {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final ItemGroup FANS_ITEM_GROUP = new ItemGroup(ItemGroup.GROUPS.length, "fansmod") {
+    public static final CreativeModeTab FANS_ITEM_GROUP = new CreativeModeTab(CreativeModeTab.TABS.length, "fansmod") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(IRON_FAN_ITEM.get());
         }
     };
 
     @SuppressWarnings("unchecked")
     private static BlockItem createBlockItem(RegistryObject<? extends Block> block) {
-        return new BlockItem(block.get(), new Item.Properties().group(FANS_ITEM_GROUP));
+        return new BlockItem(block.get(), new Item.Properties().tab(FANS_ITEM_GROUP));
     }
 
-    public static final RegistryObject<Item> PROPELLER = ITEMS.register("propeller", () -> new Item(new Item.Properties().group(FANS_ITEM_GROUP)));
+    public static final RegistryObject<Item> PROPELLER = ITEMS.register("propeller", () -> new Item(new Item.Properties().tab(FANS_ITEM_GROUP)));
     public static final RegistryObject<StickyBootsItem> STICKY_BOOTS_ITEM = ITEMS.register("sticky_boots", StickyBootsItem::new);
 
     public static final RegistryObject<BlockItem> IRON_FAN_ITEM = ITEMS.register("iron_fan", () -> createBlockItem(Blocks.IRON_FAN_BLOCK));

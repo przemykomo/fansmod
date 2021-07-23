@@ -1,16 +1,16 @@
 package xyz.przemyk.fansmod.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import xyz.przemyk.fansmod.tiles.ConfigurableFanTile;
 
 public class ConfigurableFanBlock extends FanBlock {
@@ -23,30 +23,29 @@ public class ConfigurableFanBlock extends FanBlock {
     public ConfigurableFanBlock(Properties properties) {
         super(properties, ConfigurableFanTile::new);
 
-        setDefaultState(getDefaultState().with(LEVEL, 0));
+        registerDefaultState(defaultBlockState().setValue(LEVEL, 0));
     }
 
     @Override
-    public ConfigurableFanTile createTileEntity(BlockState state, IBlockReader world) {
-        return new ConfigurableFanTile();
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new ConfigurableFanTile(blockPos, blockState);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(LEVEL);
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (player.isCrouching()) {
-            worldIn.setBlockState(pos, state.with(LEVEL, 0), 2);
+            worldIn.setBlock(pos, state.setValue(LEVEL, 0), 2);
         } else {
-            worldIn.setBlockState(pos, state.func_235896_a_(LEVEL), 2);
+            worldIn.setBlock(pos, state.cycle(LEVEL), 2);
         }
 
-//        ((ConfigurableFanTile) worldIn.getTileEntity(pos)).update();
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 }

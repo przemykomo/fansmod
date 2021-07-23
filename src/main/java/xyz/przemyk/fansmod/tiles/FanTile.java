@@ -1,25 +1,24 @@
 package xyz.przemyk.fansmod.tiles;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
 import xyz.przemyk.fansmod.registry.Items;
 
 import java.util.List;
 
-public abstract class FanTile extends TileEntity implements ITickableTileEntity {
+public abstract class FanTile extends BlockEntity {
 
-    protected FanTile(TileEntityType<? extends FanTile> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
+    protected FanTile(BlockEntityType<? extends FanTile> tileEntityTypeIn, BlockPos blockPos, BlockState blockState) {
+        super(tileEntityTypeIn, blockPos, blockState);
     }
 
     protected boolean firstTick = true;
@@ -27,25 +26,24 @@ public abstract class FanTile extends TileEntity implements ITickableTileEntity 
     protected int range;
 
     protected Direction fanDirection;
-    protected AxisAlignedBB scan;
+    protected AABB scan;
 
     protected abstract double getFanSpeed();
     protected abstract int getMaxRange();
 
-    @Override
-    public void tick() {
-        if (world != null) {
+    public static void tick(FanTile fanTile) {
+        if (fanTile.level != null) {
 
             // Cannot override onLoad because this code needs to get block state
-            if (firstTick) {
-                firstTick = false;
-                firstTick();
+            if (fanTile.firstTick) {
+                fanTile.firstTick = false;
+                fanTile.firstTick();
             }
 
-            getRange();
-            if (range > 0) {
-                scan = getScan(range);
-                moveEntities();
+            fanTile.getRange();
+            if (fanTile.range > 0) {
+                fanTile.scan = fanTile.getScan(fanTile.range);
+                fanTile.moveEntities();
             }
         }
     }
@@ -56,10 +54,10 @@ public abstract class FanTile extends TileEntity implements ITickableTileEntity 
 
     protected void getRange() {
         for (int i = 1; i <= getMaxRange(); ++i) {
-            BlockPos scanPos = pos.offset(fanDirection, i);
-            BlockState blockState =  world.getBlockState(scanPos);
-            if (blockState.isSolidSide(world, scanPos, fanDirection.getOpposite())
-            ||  blockState.isSolidSide(world, scanPos, fanDirection)) {
+            BlockPos scanPos = worldPosition.relative(fanDirection, i);
+            BlockState blockState =  level.getBlockState(scanPos);
+            if (blockState.isFaceSturdy(level, scanPos, fanDirection.getOpposite())
+            ||  blockState.isFaceSturdy(level, scanPos, fanDirection)) {
                 range = i - 1;
                 return;
             }
@@ -68,27 +66,23 @@ public abstract class FanTile extends TileEntity implements ITickableTileEntity 
     }
 
     protected void getDirection() {
-        fanDirection = getBlockState().get(BlockStateProperties.FACING);
+        fanDirection = getBlockState().getValue(BlockStateProperties.FACING);
     }
 
-    protected AxisAlignedBB getScan(int boxLength) {
-        switch (fanDirection) {
-            case DOWN:
-            case NORTH:
-            case WEST:
-                return new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength + 1).add(1.0, 1.0, 1.0));
-            default:
-                return new AxisAlignedBB(pos, pos.offset(fanDirection, boxLength).add(1.0, 1.0, 1.0));
-        }
+    protected AABB getScan(int boxLength) {
+        return switch (fanDirection) {
+            case DOWN, NORTH, WEST -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength + 1).offset(1.0, 1.0, 1.0));
+            default -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength).offset(1.0, 1.0, 1.0));
+        };
     }
 
     protected void moveEntities() {
-        List<Entity> entityList = world.getEntitiesWithinAABB(Entity.class, scan);
+        List<Entity> entityList = level.getEntitiesOfClass(Entity.class, scan);
 
         for (Entity entity : entityList) {
-            if (!( entity instanceof PlayerEntity && ((PlayerEntity) entity).abilities.isFlying)) {
+//            if (!(entity instanceof Player && ((Player) entity).abilities.flying)) {
                 addMotion(entity);
-            }
+//            }
             if (fanDirection == Direction.UP) {
                 entity.fallDistance = 0;
             }
@@ -96,32 +90,20 @@ public abstract class FanTile extends TileEntity implements ITickableTileEntity 
     }
 
     protected void addMotion(Entity entity) {
-        if (entity instanceof PlayerEntity &&
-                ((PlayerEntity) entity).getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == Items.STICKY_BOOTS_ITEM.get()
+        if (entity instanceof Player &&
+                ((Player) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == Items.STICKY_BOOTS_ITEM.get()
                 && entity.isOnGround()) {
             return;
         }
 
-        Vector3d motion = entity.getMotion();
+        Vec3 motion = entity.getDeltaMovement();
         switch (fanDirection) {
-            case DOWN:
-                entity.setMotion(motion.x, motion.y - getFanSpeed(), motion.z);
-                break;
-            case UP:
-                entity.setMotion(motion.x, motion.y + getFanSpeed(), motion.z);
-                break;
-            case NORTH:
-                entity.setMotion(motion.x, motion.y, motion.z - getFanSpeed());
-                break;
-            case SOUTH:
-                entity.setMotion(motion.x, motion.y, motion.z + getFanSpeed());
-                break;
-            case WEST:
-                entity.setMotion(motion.x - getFanSpeed(), motion.y, motion.z);
-                break;
-            case EAST:
-                entity.setMotion(motion.x + getFanSpeed(), motion.y, motion.z);
-                break;
+            case DOWN -> entity.setDeltaMovement(motion.x, motion.y - getFanSpeed(), motion.z);
+            case UP -> entity.setDeltaMovement(motion.x, motion.y + getFanSpeed(), motion.z);
+            case NORTH -> entity.setDeltaMovement(motion.x, motion.y, motion.z - getFanSpeed());
+            case SOUTH -> entity.setDeltaMovement(motion.x, motion.y, motion.z + getFanSpeed());
+            case WEST -> entity.setDeltaMovement(motion.x - getFanSpeed(), motion.y, motion.z);
+            case EAST -> entity.setDeltaMovement(motion.x + getFanSpeed(), motion.y, motion.z);
         }
     }
 }

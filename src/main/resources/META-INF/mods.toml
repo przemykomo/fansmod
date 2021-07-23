@@ -1,26 +1,24 @@
-modLoader="javafml" #mandatory
+modLoader="javafml"
 loaderVersion="[35,)"
-license="GNU General Public License"
-#issueTrackerURL="http://my.issue.tracker/" #optional
-[[mods]] #mandatory
-modId="fansmod" #mandatory
-version="2.0.1.2" #mandatory
-displayName="Fans Mod" #mandatory
-logoFile="logo_scaled.png" #optional
-displayURL="https://przemyk.xyz/mods/fansmod/index.html" #optional
+license="GNU LGPLv3"
+[[mods]]
+modId="fansmod"
+version="2.0.1.2"
+displayName="Fans Mod"
+logoFile="logo_scaled.png"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/fans-mod"
 description='''
 This mod adds fans.
 '''
-[[dependencies.fansmod]] #optional
-    modId="forge" #mandatory
-    mandatory=true #mandatory
-    versionRange="[36,)" #mandatory
+[[dependencies.fansmod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[37,)"
     ordering="NONE"
     side="BOTH"
-# Here's another dependency
 [[dependencies.fansmod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5]"
+    versionRange="[1.17,)"
     ordering="NONE"
     side="BOTH"

@@ -1,12 +1,14 @@
 package xyz.przemyk.fansmod.tiles;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.registry.TileEntities;
 
 public class RedstoneFanTile extends FanTile  {
 
-    public RedstoneFanTile() {
-        super(TileEntities.REDSTONE_FAN_TILE.get());
+    public RedstoneFanTile(BlockPos blockPos, BlockState blockState) {
+        super(TileEntities.REDSTONE_FAN_TILE.get(), blockPos, blockState);
     }
 
     @Override
@@ -16,7 +18,7 @@ public class RedstoneFanTile extends FanTile  {
 
     @Override
     protected int getMaxRange() {
-        return world.getRedstonePowerFromNeighbors(pos);
+        return level.getBestNeighborSignal(worldPosition);
     }
 
 }
