@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import xyz.przemyk.fansmod.tiles.FanTile;
+import xyz.przemyk.fansmod.blockentity.FanBlockEntity;
 
 import javax.annotation.Nullable;
 
@@ -21,9 +21,9 @@ public class FanBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
-    private final BlockEntityType.BlockEntitySupplier<? extends FanTile> blockEntitySupplier;
+    private final BlockEntityType.BlockEntitySupplier<? extends FanBlockEntity> blockEntitySupplier;
 
-    public FanBlock(Properties properties, BlockEntityType.BlockEntitySupplier<? extends FanTile> blockEntitySupplier) {
+    public FanBlock(Properties properties, BlockEntityType.BlockEntitySupplier<? extends FanBlockEntity> blockEntitySupplier) {
         super(properties);
         this.blockEntitySupplier = blockEntitySupplier;
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
@@ -48,6 +48,6 @@ public class FanBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return (level1, blockPos, blockState1, blockEntity) -> FanTile.tick((FanTile) blockEntity);
+        return (level1, blockPos, blockState1, blockEntity) -> FanBlockEntity.tick((FanBlockEntity) blockEntity);
     }
 }

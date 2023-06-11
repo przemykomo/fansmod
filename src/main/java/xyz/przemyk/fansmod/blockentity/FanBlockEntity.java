@@ -1,4 +1,4 @@
-package xyz.przemyk.fansmod.tiles;
+package xyz.przemyk.fansmod.blockentity;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.Entity;
@@ -11,14 +11,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
-import xyz.przemyk.fansmod.registry.Items;
+import xyz.przemyk.fansmod.registry.FansModItems;
 
 import java.util.List;
 
-public abstract class FanTile extends BlockEntity {
+public abstract class FanBlockEntity extends BlockEntity {
 
-    protected FanTile(BlockEntityType<? extends FanTile> tileEntityTypeIn, BlockPos blockPos, BlockState blockState) {
-        super(tileEntityTypeIn, blockPos, blockState);
+    protected FanBlockEntity(BlockEntityType<? extends FanBlockEntity> blockEntityType, BlockPos blockPos, BlockState blockState) {
+        super(blockEntityType, blockPos, blockState);
     }
 
     protected boolean firstTick = true;
@@ -31,19 +31,19 @@ public abstract class FanTile extends BlockEntity {
     protected abstract double getFanSpeed();
     protected abstract int getMaxRange();
 
-    public static void tick(FanTile fanTile) {
-        if (fanTile.level != null) {
+    public static void tick(FanBlockEntity fanBlockEntity) {
+        if (fanBlockEntity.level != null) {
 
             // Cannot override onLoad because this code needs to get block state
-            if (fanTile.firstTick) {
-                fanTile.firstTick = false;
-                fanTile.firstTick();
+            if (fanBlockEntity.firstTick) {
+                fanBlockEntity.firstTick = false;
+                fanBlockEntity.firstTick();
             }
 
-            fanTile.getRange();
-            if (fanTile.range > 0) {
-                fanTile.scan = fanTile.getScan(fanTile.range);
-                fanTile.moveEntities();
+            fanBlockEntity.getRange();
+            if (fanBlockEntity.range > 0) {
+                fanBlockEntity.scan = fanBlockEntity.getScan(fanBlockEntity.range);
+                fanBlockEntity.moveEntities();
             }
         }
     }
@@ -71,8 +71,8 @@ public abstract class FanTile extends BlockEntity {
 
     protected AABB getScan(int boxLength) {
         return switch (fanDirection) {
-            case DOWN, NORTH, WEST -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength + 1).offset(1.0, 1.0, 1.0));
-            default -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength).offset(1.0, 1.0, 1.0));
+            case DOWN, NORTH, WEST -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength + 1).offset(1, 1, 1));
+            default -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength).offset(1, 1, 1));
         };
     }
 
@@ -91,8 +91,8 @@ public abstract class FanTile extends BlockEntity {
 
     protected void addMotion(Entity entity) {
         if (entity instanceof Player &&
-                ((Player) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == Items.STICKY_BOOTS_ITEM.get()
-                && entity.isOnGround()) {
+                ((Player) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == FansModItems.STICKY_BOOTS_ITEM.get()
+                && entity.onGround()) {
             return;
         }
 

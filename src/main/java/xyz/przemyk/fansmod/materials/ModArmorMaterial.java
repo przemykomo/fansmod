@@ -1,6 +1,6 @@
 package xyz.przemyk.fansmod.materials;
 
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -13,24 +13,19 @@ import xyz.przemyk.fansmod.FansMod;
 
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public enum ModArmorMaterial implements ArmorMaterial {
-    STICKY("sticky", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.SLIME_BLOCK_PLACE, 0.0f, () -> {
-        return Ingredient.of(Items.IRON_INGOT);
-    });
-
-    private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
+    STICKY("sticky", 15, 9, SoundEvents.SLIME_BLOCK_PLACE, 0.0f, () -> Ingredient.of(Items.IRON_INGOT));
     private final String name;
-    private final int maxDamageFactor;
-    private final int[] damageReductionAmountArray;
+    private final int durabilityMultiplier;
     private final int enchantability;
     private final SoundEvent soundEvent;
     private final float toughness;
     private final LazyLoadedValue<Ingredient> repairMaterial;
 
-    ModArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent equipSoundIn, float toughnessIn, Supplier<Ingredient> repairMaterialSupplier) {
+    ModArmorMaterial(String nameIn, int durabilityMultiplier, int enchantabilityIn, SoundEvent equipSoundIn, float toughnessIn, Supplier<Ingredient> repairMaterialSupplier) {
         this.name = nameIn;
-        this.maxDamageFactor = maxDamageFactorIn;
-        this.damageReductionAmountArray = damageReductionAmountsIn;
+        this.durabilityMultiplier = durabilityMultiplier;
         this.enchantability = enchantabilityIn;
         this.soundEvent = equipSoundIn;
         this.toughness = toughnessIn;
@@ -38,13 +33,13 @@ public enum ModArmorMaterial implements ArmorMaterial {
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slotIn) {
-        return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
+    public int getDurabilityForType(ArmorItem.Type type) {
+        return 13 * this.durabilityMultiplier;
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slotIn) {
-        return this.damageReductionAmountArray[slotIn.getIndex()];
+    public int getDefenseForType(ArmorItem.Type type) {
+        return 2;
     }
 
     @Override

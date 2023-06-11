@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import xyz.przemyk.fansmod.tiles.ConfigurableFanTile;
+import xyz.przemyk.fansmod.blockentity.ConfigurableFanBlockEntity;
 
 public class ConfigurableFanBlock extends FanBlock {
 
@@ -21,14 +21,14 @@ public class ConfigurableFanBlock extends FanBlock {
     public static IntegerProperty LEVEL;
 
     public ConfigurableFanBlock(Properties properties) {
-        super(properties, ConfigurableFanTile::new);
+        super(properties, ConfigurableFanBlockEntity::new);
 
         registerDefaultState(defaultBlockState().setValue(LEVEL, 0));
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new ConfigurableFanTile(blockPos, blockState);
+        return new ConfigurableFanBlockEntity(blockPos, blockState);
     }
 
     @Override

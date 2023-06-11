@@ -1,14 +1,14 @@
-package xyz.przemyk.fansmod.tiles;
+package xyz.przemyk.fansmod.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import xyz.przemyk.fansmod.Config;
-import xyz.przemyk.fansmod.registry.TileEntities;
+import xyz.przemyk.fansmod.registry.FansModBlockEntities;
 
-public class GoldFanTile extends FanTile {
+public class GoldFanBlockEntity extends FanBlockEntity {
 
-    public GoldFanTile(BlockPos blockPos, BlockState blockState) {
-        super(TileEntities.GOLD_FAN_TILE.get(), blockPos, blockState);
+    public GoldFanBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(FansModBlockEntities.GOLD_FAN_BLOCK_ENTITY.get(), blockPos, blockState);
     }
 
     @Override

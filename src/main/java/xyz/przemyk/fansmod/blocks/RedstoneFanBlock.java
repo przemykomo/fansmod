@@ -7,16 +7,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import xyz.przemyk.fansmod.tiles.RedstoneFanTile;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import xyz.przemyk.fansmod.blockentity.RedstoneFanBlockEntity;
 
 public class RedstoneFanBlock extends FanBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public RedstoneFanBlock(Properties properties) {
-        super(properties, RedstoneFanTile::new);
+        super(properties, RedstoneFanBlockEntity::new);
 
         registerDefaultState(defaultBlockState().setValue(POWERED, false));
     }

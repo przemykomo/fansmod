@@ -1,4 +1,4 @@
-package xyz.przemyk.fansmod.tiles;
+package xyz.przemyk.fansmod.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -7,16 +7,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import xyz.przemyk.fansmod.Config;
-import xyz.przemyk.fansmod.registry.TileEntities;
+import xyz.przemyk.fansmod.registry.FansModBlockEntities;
 
 import java.util.List;
 
-public class StickyFanTile extends FanTile {
+public class StickyFanBlockEntity extends FanBlockEntity {
 
     protected AABB stickyScan;
 
-    public StickyFanTile(BlockPos blockPos, BlockState blockState) {
-        super(TileEntities.STICKY_FAN_TILE.get(), blockPos, blockState);
+    public StickyFanBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(FansModBlockEntities.STICKY_FAN_BLOCK_ENTITY.get(), blockPos, blockState);
     }
 
     @Override

@@ -1,15 +1,15 @@
-package xyz.przemyk.fansmod.tiles;
+package xyz.przemyk.fansmod.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import xyz.przemyk.fansmod.Config;
 import xyz.przemyk.fansmod.blocks.ConfigurableFanBlock;
-import xyz.przemyk.fansmod.registry.TileEntities;
+import xyz.przemyk.fansmod.registry.FansModBlockEntities;
 
-public class ConfigurableFanTile extends FanTile {
+public class ConfigurableFanBlockEntity extends FanBlockEntity {
 
-    public ConfigurableFanTile(BlockPos blockPos, BlockState blockState) {
-        super(TileEntities.CONFIGURABLE_FAN_TILE.get(), blockPos, blockState);
+    public ConfigurableFanBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(FansModBlockEntities.CONFIGURABLE_FAN_BLOCK_ENTITY.get(), blockPos, blockState);
     }
 
     @Override

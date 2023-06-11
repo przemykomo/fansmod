@@ -11,14 +11,13 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import xyz.przemyk.fansmod.registry.Items;
 
 import java.util.List;
 
 public class LeafBlowerItem extends Item {
 
     public LeafBlowerItem() {
-        super(new Properties().tab(Items.FANS_ITEM_GROUP).stacksTo(1));
+        super(new Properties().stacksTo(1));
     }
 
     @Override
@@ -38,13 +37,13 @@ public class LeafBlowerItem extends Item {
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
+    public void onUseTick(Level level, LivingEntity player, ItemStack stack, int count) {
         double yaw = Math.toRadians(player.getYRot());
         double pitch = Math.toRadians(player.getXRot());
         Vec3 front = new Vec3(-Math.sin(yaw) * Math.cos(pitch), -Math.sin(pitch), Math.cos(yaw) * Math.cos(pitch));
         player.setDeltaMovement(player.getDeltaMovement().subtract(front.scale(0.05)));
 
-        List<Entity> entitiesAroundPlayer = player.level.getEntitiesOfClass(Entity.class, new AABB(player.getX() - 5, player.getY() - 5, player.getZ() - 5, player.getX() + 5, player.getY() + 5, player.getZ() + 5));
+        List<Entity> entitiesAroundPlayer = level.getEntitiesOfClass(Entity.class, new AABB(player.getX() - 5, player.getY() - 5, player.getZ() - 5, player.getX() + 5, player.getY() + 5, player.getZ() + 5));
         entitiesAroundPlayer.remove(player);
         for (Entity entity : entitiesAroundPlayer) {
             Vec3 relativePos = entity.position().subtract(player.position());
