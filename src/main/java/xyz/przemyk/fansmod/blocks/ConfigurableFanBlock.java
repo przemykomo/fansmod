@@ -1,7 +1,6 @@
 package xyz.przemyk.fansmod.blocks;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -15,9 +14,6 @@ import xyz.przemyk.fansmod.blockentity.ConfigurableFanBlockEntity;
 
 public class ConfigurableFanBlock extends FanBlock {
 
-    /**
-     * See {@link xyz.przemyk.fansmod.FansMod#FansMod()}
-     */
     public static IntegerProperty LEVEL;
 
     public ConfigurableFanBlock(Properties properties) {
@@ -37,13 +33,12 @@ public class ConfigurableFanBlock extends FanBlock {
         builder.add(LEVEL);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (player.isCrouching()) {
-            worldIn.setBlock(pos, state.setValue(LEVEL, 0), 2);
+    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
+        if (pPlayer.isCrouching()) {
+            pLevel.setBlock(pPos, pState.setValue(LEVEL, 0), 2);
         } else {
-            worldIn.setBlock(pos, state.cycle(LEVEL), 2);
+            pLevel.setBlock(pPos, pState.cycle(LEVEL), 2);
         }
 
         return InteractionResult.SUCCESS;

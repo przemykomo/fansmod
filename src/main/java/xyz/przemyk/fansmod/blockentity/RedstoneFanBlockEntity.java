@@ -20,5 +20,4 @@ public class RedstoneFanBlockEntity extends FanBlockEntity {
     protected int getMaxRange() {
         return level.getBestNeighborSignal(worldPosition);
     }
-
 }

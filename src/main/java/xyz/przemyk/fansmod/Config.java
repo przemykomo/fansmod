@@ -2,34 +2,32 @@ package xyz.przemyk.fansmod;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.nio.file.Path;
 
-@Mod.EventBusSubscriber
 public class Config {
 
     public static final String CATEGORY_GENERAL = "general";
 
-    private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
+    private static final ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
 
-    public static ForgeConfigSpec COMMON_CONFIG;
+    public static ModConfigSpec COMMON_CONFIG;
 
-    public static ForgeConfigSpec.IntValue IRON_FAN_RANGE;
-    public static ForgeConfigSpec.IntValue GOLD_FAN_RANGE;
-    public static ForgeConfigSpec.IntValue DIAMOND_FAN_RANGE;
-    public static ForgeConfigSpec.IntValue EMERALD_FAN_RANGE;
-    public static ForgeConfigSpec.IntValue CONFIGURABLE_FAN_MAX_RANGE;
+    public static ModConfigSpec.IntValue IRON_FAN_RANGE;
+    public static ModConfigSpec.IntValue GOLD_FAN_RANGE;
+    public static ModConfigSpec.IntValue DIAMOND_FAN_RANGE;
+    public static ModConfigSpec.IntValue EMERALD_FAN_RANGE;
+    public static ModConfigSpec.IntValue CONFIGURABLE_FAN_MAX_RANGE;
 
-    public static ForgeConfigSpec.DoubleValue IRON_FAN_SPEED;
-    public static ForgeConfigSpec.DoubleValue GOLD_FAN_SPEED;
-    public static ForgeConfigSpec.DoubleValue DIAMOND_FAN_SPEED;
-    public static ForgeConfigSpec.DoubleValue EMERALD_FAN_SPEED;
-    public static ForgeConfigSpec.DoubleValue CONFIGURABLE_FAN_SPEED;
-    public static ForgeConfigSpec.DoubleValue REDSTONE_FAN_SPEED;
+    public static ModConfigSpec.DoubleValue IRON_FAN_SPEED;
+    public static ModConfigSpec.DoubleValue GOLD_FAN_SPEED;
+    public static ModConfigSpec.DoubleValue DIAMOND_FAN_SPEED;
+    public static ModConfigSpec.DoubleValue EMERALD_FAN_SPEED;
+    public static ModConfigSpec.DoubleValue CONFIGURABLE_FAN_SPEED;
+    public static ModConfigSpec.DoubleValue REDSTONE_FAN_SPEED;
 
-    public static ForgeConfigSpec.DoubleValue STICKY_RANGE;
+    public static ModConfigSpec.DoubleValue STICKY_RANGE;
 
     static {
         COMMON_BUILDER.comment("Fans settings").push(CATEGORY_GENERAL);
@@ -66,7 +64,7 @@ public class Config {
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
 
-    public static void loadConfig(ForgeConfigSpec spec, Path path) {
+    public static void loadConfig(ModConfigSpec spec, Path path) {
         final CommentedFileConfig configData = CommentedFileConfig.builder(path)
                 .sync()
                 .autosave()

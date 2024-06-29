@@ -21,7 +21,7 @@ public class LeafBlowerItem extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack pStack, LivingEntity p_344979_) {
         return Integer.MAX_VALUE;
     }
 

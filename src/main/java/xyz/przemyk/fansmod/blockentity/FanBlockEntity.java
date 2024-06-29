@@ -71,8 +71,8 @@ public abstract class FanBlockEntity extends BlockEntity {
 
     protected AABB getScan(int boxLength) {
         return switch (fanDirection) {
-            case DOWN, NORTH, WEST -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength + 1).offset(1, 1, 1));
-            default -> new AABB(worldPosition, worldPosition.relative(fanDirection, boxLength).offset(1, 1, 1));
+            case DOWN, NORTH, WEST -> AABB.encapsulatingFullBlocks(worldPosition, worldPosition.relative(fanDirection, boxLength + 1));
+            default -> AABB.encapsulatingFullBlocks(worldPosition, worldPosition.relative(fanDirection, boxLength));
         };
     }
 
